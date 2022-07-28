@@ -1,0 +1,133 @@
+@import '../../../styles.scss';
+
+.header {
+    margin-top: 25px;
+    margin-left: 40px;
+    margin-right: 40px;
+    display: flex;
+    justify-content: space-between;
+    .time {
+        display: flex;
+        flex-direction: column;
+        span {
+            font-weight: 700;
+            font-size: 144px;
+            color: $dark-text-color;
+            line-height: 100px;
+            margin-top: 35px;
+        }
+        p {
+            color: $dark-text-color;
+            text-align: center;
+        }
+    }
+    .weatherWidget {
+        display: flex;
+        flex-direction: column;   
+        .location {
+            p {
+                margin: 0;
+            }
+        }
+        .weather {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            img {
+                width: 32px;
+                margin-bottom: 25px;
+            }
+            p {
+                font-weight: 700;
+                font-size: 48px;
+            }
+        }
+    }
+}
+.main {
+    display: flex;
+    justify-content: space-between;
+    text-align: right;
+    margin-right: 135px;
+    align-items: center;
+    gap: 10px;
+    .span {
+        font-size: 24px;
+        line-height: 10px;
+    }
+    .text-1 {
+        p {
+            font-weight: 700;
+            font-size: 36px;
+            color: $red-text-color
+        }
+    }
+    .phrase-large {
+        font-weight: 700;
+        font-size: 64px;
+        color: $red-text-color;
+    }
+}
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100px;
+    background: linear-gradient(90.16deg, #33383D 0%, #1C1D20 100%);
+    .footer-info {
+        margin-left: 360px;
+        .footer-text {
+            display: flex;
+            gap: 35px;
+            font-size: 12px;
+            color: $white;
+            text-align: right;
+            align-items: center;
+        }
+    }
+    .refresh-timeout {
+        display: flex;
+        gap: 33px;
+        color: $white;
+        text-align: right;
+        align-items: center;
+        .refresh-time {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            span {
+                font-weight: 700;
+                font-size: 48px;
+                line-height: 30px;
+            }
+        }
+    }
+    .footer-buttons {
+        display: flex;
+        align-items: center;
+        .continue {
+            cursor: pointer;
+            background-color: $white;
+            width: 131px;
+            padding: 36px 18px;
+            p {
+                text-align: center;
+                color: $red-text-color;
+                font-size: 12px;
+                line-height: 15px;
+            }
+        }
+        .logout {
+            cursor: pointer;
+            width: 131px;
+            padding: 36px 18px;
+            p {
+                color: $white;
+                font-weight: 700;
+                font-size: 12px;
+                text-align: center;
+            }
+        }
+    }
+}

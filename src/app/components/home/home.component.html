@@ -1,0 +1,64 @@
+<div class="header mark-font">
+    <div class="logo">
+        <img src="../../../assets/compass03.png" alt="Logo Compass">
+    </div>
+    <div class="time">
+        <span>{{ actualDateTime | date:'shortTime':'':'pt' }}</span>
+        <p>{{ actualDateTime | date:'fullDate':'':'pt' }}</p>
+    </div>
+    <div class="weatherWidget">
+        <div class="location">
+            <p>{{ weatherData.name }} - {{ weatherData.sys.country }}</p>
+        </div>
+        <div class="weather">
+            <span><img src="../../../assets/icons/{{ weatherData.weather[0].icon }}.png" alt=""></span>
+            <p>{{ weatherData.main.temp | number: '1.0-0' }}°</p>
+        </div>
+    </div>
+</div>
+<div class="main">
+    <div>
+        <img id="logo-xl" src="../../../assets/logo-xl-cropped.png" alt="Logo UOL">
+    </div>
+    <div class="main-text mark-font">
+        <div class="text-1">
+            <p>Our mission is</p>
+            <span class="span">Nossa missão é</span>
+        </div>
+        <div class="text-2">
+            <p class="phrase-large">to transform the world</p>
+            <span class="span">transformar o mundo</span>
+        </div>
+        <div class="text-3">
+            <p class="phrase-large">building digital experiences</p>
+            <span class="span">construindo experiências digitais</span>
+        </div>
+        <div class="text-4">
+            <p class="phrase-large">that enable our client's growth</p>
+            <span class="span">que permitam o crescimento dos nossos clientes</span>
+        </div>
+    </div>
+</div>
+<div class="footer mark-font">
+    <div class="footer-info">
+        <div class="footer-text">
+            <p>
+                Essa janela do navegador é usada para manter sua sessão de autenticação ativa. 
+                Deixe-a <br> aberta em segundo plano e abra uma nova janela para continuar a navegar.
+            </p>
+            <img src="../../../assets/line.png" alt="">
+        </div>
+    </div>
+    <div class="refresh-timeout">
+        <p>Apllication <br> refresh in</p>
+        <p class="refresh-time"><span>{{ data }}</span> seconds</p>
+    </div>
+    <div class="footer-buttons">
+        <div class="continue">
+            <p>Continuar navegando</p>
+        </div>
+        <div class="logout">
+            <p (click)="logout()">Logout</p>
+        </div>
+    </div>
+</div>
