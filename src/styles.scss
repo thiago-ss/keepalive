@@ -1,1 +1,43 @@
-/* You can add global styles to this file, and also import other style files */
+// fonte Mark Pro
+@font-face {
+    font-family: Mark-Pro;
+    src: url(assets/Mark-Pro.ttf) format('truetype');
+}
+  
+.mark-font {
+    font-family: Mark-Pro;
+}
+
+// responsividade
+$tablet: 768px;
+$mobileL: 425px;
+$mobileS: 320px;
+
+@mixin responsive($dispositive) {
+    @if $dispositive == tablet {
+      @media only screen and (min-width: #{$tablet}) {
+        @content;
+      }
+    } @else if $dispositive == mobileL {
+      @media only screen and (min-width: #{$mobileL}) and (max-width: #{$tablet - 1}) {
+        @content;
+      }
+    } @else if $dispositive == mobileS {
+      @media only screen and (max-width: #{$mobileL - 1}) {
+        @content;
+      }
+    }
+}
+
+// variaveis de cor
+$text-color: #E0E0E0;
+$error-color: #E9B425;
+$dark-text-color: #222;
+$red-text-color: #C12D18;
+$white: #FFF;
+
+p {
+  margin: 0 !important;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
