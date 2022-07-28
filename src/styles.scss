@@ -1,3 +1,5 @@
+
+
 // fonte Mark Pro
 @font-face {
     font-family: Mark-Pro;
@@ -9,13 +11,13 @@
 }
 
 // responsividade
-$tablet: 768px;
+$tablet: 767px;
 $mobileL: 425px;
 $mobileS: 320px;
 
 @mixin responsive($dispositive) {
     @if $dispositive == tablet {
-      @media only screen and (min-width: #{$tablet}) {
+      @media only screen and (min-width: #{$tablet}) and (max-width: 1024px){
         @content;
       }
     } @else if $dispositive == mobileL {
@@ -24,6 +26,7 @@ $mobileS: 320px;
       }
     } @else if $dispositive == mobileS {
       @media only screen and (max-width: #{$mobileL - 1}) {
+        
         @content;
       }
     }
