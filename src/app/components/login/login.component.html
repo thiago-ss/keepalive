@@ -1,0 +1,94 @@
+<!-- <div class="container-fluid">
+    <div class="row mt-5">
+        <div class="col"></div>
+        <div class="col-4">
+            <div class="card shadow">
+                <div class="card-body">
+                    <form>
+                        <div class="mb-3">
+                            <h4 class="text-dark text-muted">Login</h4>
+                        </div>
+                        <div class="mb-3">
+                          <label for="exampleInputEmail1" class="form-label">Email address</label>
+                          <input type="email" class="form-control" name="email" [(ngModel)]="email">
+                        </div>
+                        <div class="mb-3">
+                          <label for="exampleInputPassword1" class="form-label">Password</label>
+                          <input type="password" class="form-control" name="password" [(ngModel)]="password">
+                        </div>
+                        <button type="button" class="btn btn-info" (click)="login()">Login</button>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <a href="/register" style="text-decoration: none;">Need a account? <span class="text-danger">Register here</span></a>
+                            </div>
+                            <div class="col-md-6">
+                                <a class="text-dark" style="text-decoration: none;">Forgot password?</a>
+                            </div>
+                        </div>
+                      </form>
+                </div>
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+</div> -->
+<div class="containerr">
+    <div class="login-container">
+        <div class="login-info mark-font">
+            <h1>Olá,</h1>
+            <p>Para continuar navegando de forma <br> segura, efetue o login na rede.</p>
+        </div>
+        <div class="login-form mark-font">
+            <h2>Login</h2>
+            <form
+                class="login-form"
+                [formGroup]="loginForm"
+                (ngSubmit)="errorHandler()"
+                (ngSubmit)="validate()"
+            >
+                <div class="input">
+                    <input
+                        (change)="moveIcons()"
+                        id="email"
+                        type="email" 
+                        formControlName="email"
+                        [@warning]="isError ? 'yellow' : 'normal'"
+                        [(ngModel)]="email"
+                        placeholder="Usuário"
+                    >
+                    <img 
+                        [@moveIcon]="isMoved ? 'moveIn' : 'moveOut'"
+                        src="../../../assets/icon-user.svg" 
+                        id="user-icon-default"
+                    >
+                </div>
+                <div class="input">
+                    <input
+                        (change)="moveIcons()"
+                        id="password" 
+                        type="password" 
+                        formControlName="password"
+                        [(ngModel)]="password"
+                        [@warning]="isError ? 'yellow' : 'normal'"
+                        placeholder="Senha"
+                    >
+                    <img 
+                        [@moveIcon]="isMoved ? 'moveIn' : 'moveOut'"
+                        src="../../../assets/icon-password.svg" 
+                        id="password-icon-default" 
+                    >
+                </div>
+                <label *ngIf="!(validEmail || validPassword) else errorMessage"></label>
+                <button type="submit" (click)="login()">Continuar</button>
+            </form>
+        </div>
+    </div>
+    <div class="logo-container">
+        <img src="../../../assets/compass02.png" id="logo" alt="Logo">
+        <img src="../../../assets/compass01.png" id="bg" alt="Notebook">
+    </div>
+</div>
+
+<ng-template #errorMessage>
+    <p class="errorMessage mark-font">Ops, usuario ou senha invalidos. <br> Tente novamente!</p>
+</ng-template>

@@ -1,0 +1,111 @@
+@import '../../../styles.scss';
+
+.containerr {
+    background: linear-gradient(180deg, #33383D 0%, #1C1D20 100%);
+    box-shadow: 4px 4px 70px rgba(0, 0, 0, 0.25);
+    height: auto;
+    display: flex;
+    max-width: 100%;
+    .login-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 50%;
+        .login-info {
+            margin-right: 14rem;
+            h1 {
+                font-size: 60px;
+                color: $text-color;
+                margin-top: 3rem;
+            }
+            p {
+                font-size: 16px;
+                color: $text-color;
+                margin-top: 27px;
+            }
+        }
+        .login-form {
+            .input {
+                display: flex;
+                input {
+                    display: flex;
+                    flex-direction: column;
+                    margin-bottom: 30px;
+                    width: 380px;
+                    height: 60px;
+                    border-radius: 50px;
+                    background-color: #26292C;
+                    border: 1px solid $white;
+                    padding: 20px;
+                    color: $text-color;
+                    &::placeholder {
+                        color: $text-color;
+                    }
+                    &:active {
+                        outline: none;
+                    }
+                }
+                img {
+                    position: relative;
+                    margin-left: 100px;
+                    margin-bottom: 30px;
+                }
+            }
+            h2 {
+                margin-top: 97px;
+                font-weight: 400;
+                font-size: 30px;
+                color: $text-color;
+                margin-bottom: 32px;
+            }
+            button {
+                width: 380px;
+                height: 67px;
+                text-align: center;
+                color: $white;
+                background: linear-gradient(90deg, #FF2D04 0%, #C13216 100%);
+                box-shadow: inset 5px 5px 15px rgba(0, 0, 0, 0.15);
+                border: 2px solid #FF2D04;
+                border-radius: 50px;
+                margin-top: 115px;
+                margin-bottom: 200px;
+                font-weight: bold;
+                
+            }
+            .input-error {
+                border: 1px solid $error-color !important;
+            }
+        }
+    }
+    .logo-container {
+        position: relative;
+        width: 50%;
+        #bg {
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+            @include responsive(mobileS) {
+                
+            }
+        }
+        #logo {
+            position: absolute;
+            left: 35%;
+            top: 2.5%;
+            @include responsive(mobileS) {
+                position: static;
+                width: 100px;
+            }
+        }
+    }
+}
+
+.errorMessage {
+    display: flex;
+    font-weight: 700;
+    text-align: center;
+    font-size: 16px;
+    color: $error-color;
+    padding-left: 70px;
+}
