@@ -1,5 +1,11 @@
 @import '../../../styles.scss';
 
+.wrapper {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    height: 68%;
+}
 .header {
     margin-top: 25px;
     margin-left: 40px;
@@ -209,12 +215,12 @@
     @include responsive(mobileL) {
         flex-direction: column;
         justify-content: space-around;
-        height: 50%;
+        height: 350px;
     }
     @include responsive(mobileS) {
         flex-direction: column;
         justify-content: space-around;
-        height: 50%;
+        height: 350px;
     }
     .footer-info {
         margin-left: 360px;
@@ -271,11 +277,17 @@
             margin-right: 20px;
             margin-left: 20px;
         }
+        @include responsive(mobileS) {
+            font-size: 12px;
+        }
         .refresh-time {
             margin-top: 20px;
             display: flex;
             flex-direction: column;
             text-align: center;
+            @include responsive(mobileS) {
+                font-size: 14px;
+            }
             span {
                 font-weight: 700;
                 font-size: 48px;
@@ -287,7 +299,7 @@
                     font-size: 38px;
                 }
                 @include responsive(mobileS) {
-                    font-size: 36px;
+                    font-size: 30px;
                 }
             }
         }
@@ -301,6 +313,7 @@
         }
         @include responsive(mobileS) {
             width: 100%;
+            
             flex-direction: column;
         }
         .continue {

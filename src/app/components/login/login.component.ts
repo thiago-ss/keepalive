@@ -48,7 +48,6 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private formBuilder: FormBuilder,
     private router: Router
   ) {}
 
@@ -81,7 +80,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     if(this.email == '' || this.password == '') {
-      alert('erro')
+      this.isError = true;
       return;
     }
 
