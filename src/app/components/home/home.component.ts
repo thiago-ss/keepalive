@@ -23,15 +23,15 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserLocation();
-    // let updateCountdown = (() => {
-    //   if(this.data <= 0) {
-    //     this.authService.logout();
-    //     this.router.navigate(['/login']);
-    //   } else {
-    //     this.data--;
-    //   }
-    // }) 
-    // setInterval(updateCountdown, 1000);
+    let updateCountdown = (() => {
+      if(this.data <= 0) {
+        this.authService.logout();
+        this.router.navigate(['/login']);
+      } else {
+        this.data--;
+      }
+    }) 
+    setInterval(updateCountdown, 1000);
   }
 
   logout() {

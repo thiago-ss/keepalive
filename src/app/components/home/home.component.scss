@@ -6,19 +6,59 @@
     margin-right: 40px;
     display: flex;
     justify-content: space-between;
+    @include responsive(mobileL) {
+        margin-left: 10px;
+        margin-right: 10px;
+        justify-content: space-around;
+    }
+    @include responsive(mobileS) {
+        margin-left: 10px;
+        margin-right: 10px;
+        justify-content: space-around;
+    }
     .time {
         display: flex;
         flex-direction: column;
+        @include responsive(mobileS) {
+            display: none;
+        }
+        @include responsive(mobileL) {
+            display: none;
+        }
         span {
             font-weight: 700;
             font-size: 144px;
             color: $dark-text-color;
             line-height: 100px;
             margin-top: 35px;
+            @include responsive(tablet) {
+                font-size: 50px;
+                margin-top: 10px;
+                line-height: 30px;
+                text-align: center;
+            }
+            @include responsive(mobileL) {
+                font-size: 30px;
+                margin-top: 5px;
+                line-height: 30px;
+                text-align: center;
+            }
+            @include responsive(mobileS) {
+                font-size: 30px;
+                margin-top: 5px;
+                line-height: 30px;
+                text-align: center;
+            }
         }
         p {
             color: $dark-text-color;
             text-align: center;
+            @include responsive(mobileS) {
+                display: none;
+            }
+            @include responsive(mobileL) {
+                display: none;
+            }
         }
     }
     .weatherWidget {
@@ -27,19 +67,52 @@
         .location {
             p {
                 margin: 0;
+                line-height: 30px;
+                font-size: 20px;
+                @include responsive(mobileL) {
+                    font-size: 15px;
+                    line-height: 5px;
+                }
+                @include responsive(mobileS) {
+                    font-size: 15px;
+                    line-height: 5px;
+                }
             }
         }
         .weather {
             display: flex;
             align-items: center;
             gap: 12px;
+            @include responsive(tablet) {
+                gap: 5px;
+            }
+            @include responsive(mobileL) {
+                gap: 5px;
+            }
             img {
                 width: 32px;
-                margin-bottom: 25px;
+                margin-bottom: 15px;
+                @include responsive(mobileL) {
+                    width: 25px;
+                    margin-top: 15px;
+                }
+                @include responsive(mobileS) {
+                    width: 25px;
+                    margin-top: 15px;
+                }
             }
             p {
                 font-weight: 700;
                 font-size: 48px;
+                @include responsive(tablet) {
+                    font-size: 35px;
+                }
+                @include responsive(mobileL) {
+                    font-size: 30px;
+                }
+                @include responsive(mobileS) {
+                    font-size: 27px;
+                }
             }
         }
     }
@@ -51,21 +124,77 @@
     margin-right: 135px;
     align-items: center;
     gap: 10px;
+    @include responsive(tablet) {
+        margin-right: 50px;
+        max-height: 100%;
+    }
+    @include responsive(mobileL) {
+        width: 100%;
+        margin-top: 3rem;
+        margin-bottom: 4rem;
+        justify-content: center;
+    }
+    @include responsive(mobileS) {
+        width: 100%;
+        margin-top: 3rem;
+        margin-bottom: 4rem;
+        justify-content: center;
+        align-items: center;
+        padding-right: 1rem;
+    }
+    #logo-xl {
+        @include responsive(tablet) {
+            width: 350px;
+        }
+        @include responsive(mobileL) {
+            display: none;
+        }
+        @include responsive(mobileS) {
+            display: none;
+        }
+    }
     .span {
         font-size: 24px;
         line-height: 10px;
+        @include responsive(tablet) {
+            font-size: 16px;
+        }
+        @include responsive(mobileL) {
+            font-size: 16px;
+        }   
+        @include responsive(mobileS) {
+            font-size: 14px;
+        }     
     }
     .text-1 {
         p {
             font-weight: 700;
             font-size: 36px;
-            color: $red-text-color
+            color: $red-text-color;
+            @include responsive(tablet) {
+                font-size: 20px;
+            }
+            @include responsive(mobileL) {
+                font-size: 20px;
+            }
+            @include responsive(mobileS) {
+                font-size: 16px;
+            }
         }
     }
     .phrase-large {
         font-weight: 700;
         font-size: 64px;
         color: $red-text-color;
+        @include responsive(tablet) {
+            font-size: 20px;
+        }
+        @include responsive(mobileL) {
+            font-size: 20px;
+        }
+        @include responsive(mobileS) {
+            font-size: 16px;
+        }
     }
 }
 .footer {
@@ -74,8 +203,30 @@
     justify-content: space-between;
     height: 100px;
     background: linear-gradient(90.16deg, #33383D 0%, #1C1D20 100%);
+    @include responsive(tablet) {
+        justify-content: space-around;
+    }
+    @include responsive(mobileL) {
+        flex-direction: column;
+        justify-content: space-around;
+        height: 50%;
+    }
+    @include responsive(mobileS) {
+        flex-direction: column;
+        justify-content: space-around;
+        height: 50%;
+    }
     .footer-info {
         margin-left: 360px;
+        @include responsive(tablet) {
+            margin: 0;
+        }
+        @include responsive(mobileL) {
+            margin: 0;
+        }
+        @include responsive(mobileS) {
+            margin: 0;
+        }
         .footer-text {
             display: flex;
             gap: 35px;
@@ -83,6 +234,30 @@
             color: $white;
             text-align: right;
             align-items: center;
+            max-width: 514px;
+            @include responsive(tablet) {
+                font-size: 10px;
+                gap: 17px;
+                justify-content: space-around;
+            }
+            @include responsive(mobileL) {
+                margin-right: 10px;
+                margin-left: 10px;
+                text-align: center;
+            }
+            @include responsive(mobileS) {
+                margin-right: 10px;
+                margin-left: 10px;
+                text-align: center;
+            }
+            img {
+                @include responsive(mobileL) {
+                    display: none;
+                }
+                @include responsive(mobileS) {
+                    display: none;
+                }
+            }
         }
     }
     .refresh-timeout {
@@ -91,6 +266,11 @@
         color: $white;
         text-align: right;
         align-items: center;
+        @include responsive(tablet) {
+            font-size: 14px;
+            margin-right: 20px;
+            margin-left: 20px;
+        }
         .refresh-time {
             margin-top: 20px;
             display: flex;
@@ -100,17 +280,43 @@
                 font-weight: 700;
                 font-size: 48px;
                 line-height: 30px;
+                @include responsive(tablet) {
+                    font-size: 30px;
+                }
+                @include responsive(mobileL) {
+                    font-size: 38px;
+                }
+                @include responsive(mobileS) {
+                    font-size: 36px;
+                }
             }
         }
     }
     .footer-buttons {
         display: flex;
         align-items: center;
+        @include responsive(mobileL) {
+            width: 100%;
+            flex-direction: column;
+        }
+        @include responsive(mobileS) {
+            width: 100%;
+            flex-direction: column;
+        }
         .continue {
             cursor: pointer;
             background-color: $white;
             width: 131px;
             padding: 36px 18px;
+            @include responsive(tablet) {
+                width: 110px;
+            }
+            @include responsive(mobileL) {
+                width: 100%;
+            }
+            @include responsive(mobileS) {
+                width: 100%;
+            }
             p {
                 text-align: center;
                 color: $red-text-color;
@@ -122,6 +328,15 @@
             cursor: pointer;
             width: 131px;
             padding: 36px 18px;
+            @include responsive(tablet) {
+                width: 110px;
+            }
+            @include responsive(mobileL) {
+                width: 100%;
+            }
+            @include responsive(mobileS) {
+                width: 100%;
+            }
             p {
                 color: $white;
                 font-weight: 700;
