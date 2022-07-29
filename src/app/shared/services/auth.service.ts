@@ -7,18 +7,14 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
-  isLoggedIn: boolean = false;
-
   constructor(private fireAuth: AngularFireAuth, private router: Router) {}
 
   login(email: string, password: string) {
     this.fireAuth.signInWithEmailAndPassword(email, password).then(() => {
       localStorage.setItem('token', 'true');
-      this.isLoggedIn = true;
       this.router.navigate(['/home'])
     }, err => {
       alert(err.message);
-      this.isLoggedIn = false;
       this.router.navigate(['/login'])
     });
   }
@@ -36,14 +32,9 @@ export class AuthService {
   logout() {
     this.fireAuth.signOut().then(() => {
       localStorage.removeItem('token');
-      this.isLoggedIn = false;
       this.router.navigate(['/login'])
     }, err => {
       alert(err.message);
     });
-  }
-
-  isAuthenticated() {
-    return this.isLoggedIn;
   }
 }
