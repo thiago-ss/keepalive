@@ -1,6 +1,5 @@
-import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth.service';
 
@@ -8,30 +7,6 @@ import { AuthService } from 'src/app/shared/services/auth.service';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  animations: [
-    trigger('moveIcon', [
-      state('moveIn', style({
-        right: 140
-      })),
-      state('moveOut', style({
-        right: 85
-      })),
-      transition('moveOut <=> moveIn', [
-        animate('0.5s')
-      ])
-    ]),
-    trigger('warning', [
-      state('normal', style({
-        borderColor: '#FFF'
-      })),
-      state('yellow', style({
-        borderColor: '#E9B425'
-      })),
-      transition('normal <=> yellow', [
-        animate('0.5s')
-      ])
-    ])
-  ]
 })
 export class LoginComponent implements OnInit {
 
@@ -53,15 +28,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-  moveIcons() {
-    if(this.loginForm.controls['email'].value || this.loginForm.controls['password'].value) {
-      this.isMoved = true;
-    } else {
-      this.isMoved = false;
-    }
-  }
-
+  
   errorHandler() {
     if(this.loginForm.controls['email'].errors || this.loginForm.controls['password'].errors) {
       this.isError = true;
