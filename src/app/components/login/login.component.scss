@@ -8,16 +8,13 @@
     display: flex;
     max-width: 100%;
     @include responsive(mobileS) {
-        height: 100%;
-        width: 100%;
+        min-height: 100vh;
     }
     @include responsive(mobileL) {
-        height: 100%;
-        width: 100%;
+        min-height: 100vh;
     }
     @include responsive(tablet) {
-        height: 100%;
-        width: 100%;
+        min-height: 100vh;
     }
     .login-container {
         display: flex;
@@ -27,27 +24,24 @@
         width: 50%;
         @include responsive(mobileS) {
             width: 100%;
-            max-height: 100%;
         }
         @include responsive(mobileL) {
             width: 100%;
-            max-height: 100%;
         }
         @include responsive(tablet) {
             width: 100%;
-            max-height: 100%;
         }
         .login-info {
             @include responsive(mobileS) {
                 margin: 15px auto 0 auto;
             }
             @include responsive(mobileL) {
-                margin: 15px auto 0 auto;
+                margin: 55px auto 0 65px;
             }
             @include responsive(tablet) {
                 position: relative;
                 top: 140px;
-                left: 60px;
+                left: 20px;
             }
             margin-right: 6.5rem;
             h1 {
@@ -73,22 +67,16 @@
         }
         .login-form {
             @include responsive(mobileS) {
-                width: 100%;
                 display: flex;
                 flex-direction: column;
-                justify-content: center;
                 align-items: center;
             }
             @include responsive(mobileL) {
-                width: 100%;
                 display: flex;
                 flex-direction: column;
-                justify-content: center;
                 align-items: center;
             }
             @include responsive(tablet) {
-                width: 100%;
-                height: 100%;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
@@ -102,7 +90,6 @@
                 input {
                     display: flex;
                     flex-direction: column;
-                    margin-bottom: 30px;
                     width: 380px;
                     height: 60px;
                     border-radius: 50px;
@@ -121,22 +108,18 @@
                     }
                     @include responsive(mobileL) {
                         width: 320px;
-                        margin-left: 80px;
-                    }
-                    @include responsive(tablet) {
-                        margin-left: 110px;
                     }
                 }
                 img {
                     position: absolute;
                     right: -40px;
-                    top: 20%;
+                    top: 30%;
                     @include responsive(mobileS) {
-                        margin-left: 40px;
+                        right: 10px;
                         width: 20px;
                     }
                     @include responsive(mobileL) {
-                        margin-left: 50px;
+                        right: 20px;
                         width: 20px;
                     }
                 }
@@ -145,17 +128,17 @@
                 @include responsive(mobileS) {
                     margin-top: 50px;
                     position: relative;
-                    right: 76px;
+                    right: 80px;
                 }
                 @include responsive(mobileL) {
                     margin-top: 50px;
                     position: relative;
-                    right: 96px;
+                    right: 107px;
                 }
                 @include responsive(tablet) {
                     margin-top: 180px;
                     position: relative;
-                    right: 147px;
+                    right: 130px;
                 }
                 margin-top: 97px;
                 font-weight: 400;
@@ -172,8 +155,8 @@
                 box-shadow: inset 5px 5px 15px rgba(0, 0, 0, 0.15);
                 border: 2px solid #FF2D04;
                 border-radius: 50px;
-                margin-top: 115px;
-                margin-bottom: 200px;
+                margin-top: 105px;
+                margin-bottom: 25px;
                 font-weight: bold;
                 @include responsive(mobileS) {
                     width: 260px;
@@ -192,8 +175,12 @@
                     height: 65px;
                 }
             }
-            .input-error {
-                border: 1px solid $error-color !important;
+            #link {
+                display: flex;
+                justify-content: center;
+                margin-bottom: 30px;
+                text-decoration: none;
+                color: $text-color;
             }
         }
     }
@@ -230,9 +217,9 @@
             top: 2.5%;
             @include responsive(mobileS) {
                 position: absolute;
-                width: 250px;
+                width: 210px;
                 top: 20px;
-                left: 35px;
+                left: 60px;
                 margin-bottom: 20px;
             }
             @include responsive(mobileL) {
@@ -246,7 +233,7 @@
                 position: absolute;
                 width: 250px;
                 top: 20px;
-                left: 250px;
+                left: 245px;
                 margin-bottom: 20px;
             }
         }
@@ -292,4 +279,8 @@
     @include responsive(mobileS) {
      right: 30px;
     }
+}
+
+.inputError {
+    border-color: $error-color !important;
 }

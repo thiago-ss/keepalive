@@ -9,15 +9,15 @@
             <form
                 class="login-form"
                 [formGroup]="loginForm"
-                (ngSubmit)="errorHandler()"
+                (change)="errorHandler()"
                 (ngSubmit)="validate()"
             >
-                <div class="input">
+                <div class="input" style="margin-bottom: 30px;">
                     <input
                         id="email"
                         type="email" 
                         formControlName="email"
-                        [@warning]="isError ? 'yellow' : 'normal'"
+                        [@warning]="isEmailError ? 'yellow' : 'normal'"
                         [(ngModel)]="email"
                         placeholder="Usuário"
                     >
@@ -27,24 +27,30 @@
                         id="user-icon-default"
                     >
                 </div>
-                <div class="input">
+                <div class="input" style="margin-bottom: 30px;">
                     <input
                         id="password" 
                         type="password" 
                         formControlName="password"
                         [(ngModel)]="password"
-                        [@warning]="isError ? 'yellow' : 'normal'"
+                        [@warning]="isPasswordError ? 'yellow' : 'normal'"
                         placeholder="Senha"
                     >
                     <img 
                         [class.out-input]="password == ''" [class.in-input] ="password != '' && password != ' '"
                         src="../../../assets/icon-password.svg" 
-                        id="password-icon-default" 
+                        id="password-icon-default"
                     >
                 </div>
-                <label *ngIf="!(validEmail || validPassword) else errorMessage"></label>
-                <button type="submit" (click)="login()">Continuar</button>
+                <label *ngIf="isLoggedIn else errorMessage"></label>
+                <button 
+                    type="submit" 
+                    (click)="login()"
+                    [disabled]="!loginForm.valid">
+                    Continuar
+                </button>
             </form>
+            <a id="link" href="/register">Nao possui uma conta? Cadastre-se</a>
         </div>
     </div>
     <div class="logo-container">

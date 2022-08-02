@@ -1,10 +1,12 @@
 @import '../../../styles.scss';
 
 .wrapper {
-    position: absolute;
-    width: 100%;
-    bottom: 0;
-    height: 68%;
+    // position: absolute;
+    // width: 100%;
+    // bottom: 0;
+    // height: 68%;
+
+    max-height: 100vh;
 }
 .header {
     margin-top: 25px;

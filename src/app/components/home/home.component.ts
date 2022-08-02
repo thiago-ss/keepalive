@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
       } else {
         this.data--;
       }
-    }) 
+    })
     setInterval(updateCountdown, 1000);
   }
 
