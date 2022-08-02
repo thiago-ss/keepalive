@@ -1,31 +1,149 @@
-<div class="container-fluid">
-    <div class="row mt-5">
-        <div class="col"></div>
-        <div class="col-4">
-            <div class="card shadow">
-                <div class="card-body">
-                    <form>
-                        <div class="mb-3">
-                            <h4 class="text-dark text-muted">Login</h4>
-                        </div>
-                        <div class="mb-3">
-                          <label for="exampleInputEmail1" class="form-label">Email address</label>
-                          <input type="email" class="form-control" name="email" [(ngModel)]="email">
-                        </div>
-                        <div class="mb-3">
-                          <label for="exampleInputPassword1" class="form-label">Password</label>
-                          <input type="password" class="form-control" name="password" [(ngModel)]="password">
-                        </div>
-                        <button type="button" class="btn btn-info" (click)="register()">Register</button>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <a href="/login" style="text-decoration: none;"><span class="text-danger">Login</span></a>
-                            </div>
-                        </div>
-                      </form>
-                </div>
-            </div>
+<div class="containerr">
+    <div class="login-container">
+        <div class="login-info mark-font">
+            <h1>Olá,</h1>
+            <p>Para continuar navegando de forma <br> segura, efetue o cadastro na rede.</p>
         </div>
-        <div class="col"></div>
+        <div class="login-form mark-font">
+            <h2>Registrar</h2>
+            <form
+                class="login-form"
+                [formGroup]="registerForm"
+                (change)="errorHandler()"
+                (ngSubmit)="validate()">
+                <div style="margin-bottom: 30px;">
+                    <div class="input">
+                        <input
+                            id="email"
+                            type="email" 
+                            formControlName="email"
+                            [@warning]="isEmailError ? 'yellow' : 'normal'"
+                            [(ngModel)]="email"
+                            placeholder="Usuário"
+                        >
+                        <img 
+                            [class.out-input]="email == ''" [class.in-input] ="email != '' && email != ' '"
+                            src="../../../assets/icon-user.svg" 
+                            id="user-icon-default"
+                        >
+                    </div>
+                    <div *ngIf="(Email?.invalid && Email?.touched) || Email?.dirty" class="errorContainer">
+                        <small 
+                            *ngIf="registerForm.controls['email'].errors?.['required']"
+                            class="error" 
+                        >
+                            Insira um email
+                        </small>
+                        <small 
+                            *ngIf="registerForm.controls['email'].errors?.['pattern']"
+                            class="error"
+                        >
+                            Insira um email valido
+                        </small>
+                    </div>
+                </div>
+                <div style="margin-bottom: 30px;">
+                    <div class="input">
+                        <input
+                            id="password" 
+                            type="password" 
+                            formControlName="password"
+                            [(ngModel)]="password"
+                            [@warning]="isPasswordError ? 'yellow' : 'normal'"
+                            placeholder="Senha"
+                        >
+                        <img 
+                            [class.out-input]="password == ''" [class.in-input] ="password != '' && password != ' '"
+                            src="../../../assets/icon-password.svg" 
+                            id="password-icon-default" 
+                        >
+                    </div>
+                    <div *ngIf="(Password?.invalid && Password?.touched) || Password?.dirty" class="passwordErrorContainer">
+                        <small 
+                            *ngIf="registerForm.controls['password'].errors?.['required']" 
+                            class="error"
+                        >
+                            Insira uma senha
+                        </small>
+                        <small 
+                            *ngIf="registerForm.controls['password'].errors?.['pattern']"
+                            class="error"
+                            id="passwordError"
+                        >
+                            Sua senha deve conter: 
+                            <ul>
+                                <li 
+                                    class="error"
+                                    [class.checked]="password.length >= 6">
+                                    6 caracteres
+                                </li>
+                                <li 
+                                    class="error" 
+                                    [class.checked]="haveUppercase(password)">
+                                    Uma letra maiuscula
+                                </li>
+                                <li 
+                                    class="error"
+                                    [class.checked]="haveLowercase(password)">
+                                    Uma letra minuscula
+                                </li>
+                                <li 
+                                    class="error"
+                                    [class.checked]="haveNumber(password)">
+                                    Um numero
+                                </li>
+                                <li 
+                                    class="error"
+                                    [class.checked]="haveSymbols(password)">
+                                    Um caracter especial
+                                </li>
+                            </ul>
+                        </small>
+                    </div>
+                </div>
+                <div style="margin-bottom: 30px;">
+                    <div class="input">
+                        <input
+                            id="confirmPassword" 
+                            type="password" 
+                            formControlName="confirmPassword"
+                            [(ngModel)]="confirmPassword"
+                            [@warning]="isConfirmPasswordError ? 'yellow' : 'normal'"
+                            placeholder="Confirme sua senha"
+                        >
+                        <img 
+                            [class.out-input]="password == ''" [class.in-input] ="password != '' && password != ' '"
+                            src="../../../assets/icon-password.svg" 
+                            id="password-icon-default" 
+                        >
+                    </div>
+                    <div *ngIf="(ConfirmPassword?.invalid && ConfirmPassword?.touched) || ConfirmPassword?.dirty" class="errorContainer">
+                        <small 
+                            *ngIf="registerForm.controls['confirmPassword'].errors?.['required']" 
+                            class="error"
+                        >
+                            Confirme sua senha <br>
+                        </small>
+                        <small 
+                            *ngIf="!(registerForm.controls['confirmPassword'].value == registerForm.controls['password'].value)"
+                            class="error"
+                        >
+                            As senhas devem ser iguais
+                        </small>
+                    </div>
+                </div>
+                <button 
+                    type="submit" 
+                    (click)="register()"
+                    [disabled]="!registerForm.valid">
+                    Continuar
+                </button>
+            </form>
+            <a id="link" href="/login">Ja possui uma conta? Faca login</a>
+        </div>
+    </div>
+    <div class="logo-container">
+        <img src="../../../assets/compass02.png" id="logo" alt="Logo">
+        <img src="../../../assets/compass01.png" id="bg" alt="Notebook">
     </div>
 </div>

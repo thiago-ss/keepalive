@@ -1,0 +1,318 @@
+@import '../../../styles.scss';
+
+
+.containerr {
+    background: linear-gradient(180deg, #33383D 0%, #1C1D20 100%);
+    box-shadow: 4px 4px 70px rgba(0, 0, 0, 0.25);
+    height: auto;
+    display: flex;
+    max-width: 100%;
+    @include responsive(mobileS) {
+        min-height: 100vh;
+    }
+    @include responsive(mobileL) {
+        min-height: 100vh;
+    }
+    @include responsive(tablet) {
+        min-height: 100vh;
+    }
+    .login-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 50%;
+        @include responsive(mobileS) {
+            width: 100%;
+        }
+        @include responsive(mobileL) {
+            width: 100%;
+        }
+        @include responsive(tablet) {
+            width: 100%;
+        }
+        .login-info {
+            @include responsive(mobileS) {
+                margin: 15px auto 0 auto;
+            }
+            @include responsive(mobileL) {
+                margin: 55px auto 0 auto;
+            }
+            @include responsive(tablet) {
+                position: relative;
+                top: 140px;
+                left: 20px;
+            }
+            margin-right: 6.5rem;
+            h1 {
+                font-size: 60px;
+                color: $text-color;
+                margin-top: 3rem;
+                @include responsive(mobileS) {
+                    font-size: 40px;
+                    margin-top: 5rem;
+                }
+                @include responsive(tablet) {
+                    margin: 0;
+                }
+            }
+            p {
+                font-size: 16px;
+                color: $text-color;
+                margin-top: 27px;
+                @include responsive(mobileS) {
+                    font-size: 14px;
+                }
+            }
+        }
+        .login-form {
+            @include responsive(mobileS) {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            @include responsive(mobileL) {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            @include responsive(tablet) {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .input {
+                display: flex;
+                position: relative;
+                @include responsive(mobileS) {
+                    width: 260px;
+                }
+                input {
+                    display: flex;
+                    flex-direction: column;
+                    width: 380px;
+                    height: 60px;
+                    border-radius: 50px;
+                    background-color: #26292C;
+                    border: 1px solid $white;
+                    padding: 20px;
+                    color: $text-color;
+                    &::placeholder {
+                        color: $text-color;
+                    }
+                    &:active {
+                        outline: none;
+                    }
+                    @include responsive(mobileS) {
+                        width: 290px;
+                    }
+                    @include responsive(mobileL) {
+                        width: 320px;
+                    }
+                }
+                img {
+                    position: absolute;
+                    right: -40px;
+                    top: 30%;
+                    @include responsive(mobileS) {
+                        right: 10px;
+                        width: 20px;
+                    }
+                    @include responsive(mobileL) {
+                        right: 20px;
+                        width: 20px;
+                    }
+                }
+            }
+            .errorContainer {
+                margin-left: 20px;
+                max-width: 220px;
+                text-align: justify;
+                margin-top: 10px;
+                .error {
+                    font-size: 16px;
+                    font-weight: 700;
+                    text-align: center;
+                    color: $error-color;
+                }
+            }
+            .passwordErrorContainer {
+                margin-left: 20px;
+                max-width: 320px;
+                margin-top: 10px;
+                @include responsive(mobileS) {
+                    max-width: 220px;
+                }
+                .error {
+                    font-size: 16px;
+                    font-weight: 700;
+                    color: $error-color;
+                }
+            }
+            h2 {
+                @include responsive(mobileS) {
+                    margin-top: 50px;
+                    position: relative;
+                    right: 58px;
+                }
+                @include responsive(mobileL) {
+                    margin-top: 50px;
+                    position: relative;
+                    right: 74px;
+                }
+                @include responsive(tablet) {
+                    margin-top: 180px;
+                    position: relative;
+                    right: 105px;
+                }
+                margin-top: 97px;
+                font-weight: 400;
+                font-size: 30px;
+                color: $text-color;
+                margin-bottom: 32px;
+            }
+            button {
+                width: 380px;
+                height: 67px;
+                text-align: center;
+                color: $white;
+                background: linear-gradient(90deg, #FF2D04 0%, #C13216 100%);
+                box-shadow: inset 5px 5px 15px rgba(0, 0, 0, 0.15);
+                border: 2px solid #FF2D04;
+                border-radius: 50px;
+                margin-top: 115px;
+                margin-bottom: 25px;
+                font-weight: bold;
+                @include responsive(mobileS) {
+                    width: 260px;
+                    height: 60px;
+                    margin-bottom: 20px;
+                    margin-top: 50px;
+                }
+                @include responsive(mobileL) {
+                    width: 320px;
+                    height: 65px;
+                    margin-bottom: 20px;
+                }
+                @include responsive(tablet) {
+                    margin-bottom: 10rem;
+                    margin-top: 50px;
+                    height: 65px;
+                }
+            }
+            #link {
+                display: flex;
+                justify-content: center;
+                margin-bottom: 30px;
+                text-decoration: none;
+                color: $text-color;
+            }
+        }
+    }
+    .logo-container {
+        position: relative;
+        @include responsive(mobileS) {
+            position: absolute;
+        }
+        @include responsive(mobileL) {
+            position: absolute;
+        }
+        @include responsive(tablet) {
+            position: absolute;
+        }
+        width: 50%;
+        #bg {
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+            @include responsive(mobileS) {
+                display: none;
+            }
+            @include responsive(mobileL) {
+                display: none;
+            }
+            @include responsive(tablet) {
+                display: none;
+            }
+            
+        }
+        #logo {
+            position: absolute;
+            left: 35%;
+            top: 2.5%;
+            @include responsive(mobileS) {
+                position: absolute;
+                width: 210px;
+                top: 20px;
+                left: 60px;
+                margin-bottom: 20px;
+            }
+            @include responsive(mobileL) {
+                position: absolute;
+                width: 250px;
+                top: 20px;
+                left: 75px;
+                margin-bottom: 20px;
+            }
+            @include responsive(tablet) {
+                position: absolute;
+                width: 250px;
+                top: 20px;
+                left: 245px;
+                margin-bottom: 20px;
+            }
+        }
+    }
+}
+
+.errorMessage {
+    display: flex;
+    font-weight: 700;
+    text-align: center;
+    font-size: 16px;
+    color: $error-color;
+    padding-left: 70px;
+    @include responsive(mobileS) {
+        padding-left: 15px;
+        align-items: center;
+    }
+    @include responsive(mobileL) {
+        align-items: center;
+        padding-right: 40px;
+    }
+    @include responsive(tablet) {
+        align-items: center;
+        padding-right: 50px;
+    }
+}
+
+.in-input {
+    position: absolute;
+    transform: translateX(-63px);
+    transition: .5s;
+    @include responsive(mobileS) {
+      transform: translateX(0px);
+    }
+    @include responsive(mobileL) {
+        transform: translateX(0px);
+    }
+}
+
+.out-input {
+    position: absolute;
+    transition: 0.5s;
+    right: -40px;
+    top: 15%;
+    @include responsive(mobileS) {
+        position: absolute;
+        right: 10px;
+    }
+}
+
+.checked {
+    color: green !important;
+}
+
+.inputError {
+    border-color: $error-color !important;
+}
