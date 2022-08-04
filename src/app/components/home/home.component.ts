@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
   weatherData: any;
   actualDateTime: number = Date.now();
   data: number = 60;
+  
 
   constructor(
     private authService: AuthService, 
@@ -40,6 +41,12 @@ export class HomeComponent implements OnInit {
   }
 
   getUserLocation() {
+
+    this.weatherService.getWeatherData( -23.5489, -46.6388).
+    subscribe((weather) => {
+     this.weatherData = weather;
+    });
+
     if("geolocation" in navigator) {
       navigator.geolocation.watchPosition((success) => {
         this.lat = success.coords.latitude;

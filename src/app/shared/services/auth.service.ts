@@ -20,6 +20,7 @@ export class AuthService {
       error = true;
       this.router.navigate(['/login'])
     });
+    
     if(error)
       return error;
   }
@@ -27,7 +28,7 @@ export class AuthService {
   register(email: string, password: string) {
     this.fireAuth.createUserWithEmailAndPassword(email, password).then(() => {
       alert('Registration successful');
-      this.router.navigate(['/login']);
+      this.router.navigate(['/home']);
     }, err => {
       alert(err.message);
       this.router.navigate(['/register']);
