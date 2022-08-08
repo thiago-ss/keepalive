@@ -16,7 +16,7 @@ describe('WeatherService', () => {
     service = TestBed.inject(WeatherService);
   });
 
-  it('can load instance', () => {
+  it('should load the service instance', () => {
     expect(service).toBeTruthy();
   });
 });

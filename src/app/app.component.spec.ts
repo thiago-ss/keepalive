@@ -15,11 +15,11 @@ describe('AppComponent', () => {
     component = fixture.componentInstance;
   });
 
-  it('can load instance', () => {
+  it('should load the component instance', () => {
     expect(component).toBeTruthy();
   });
 
-  it(`title has default value`, () => {
+  it(`title should has the default value`, () => {
     expect(component.title).toEqual(`keepalive`);
   });
 });

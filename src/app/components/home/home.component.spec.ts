@@ -28,24 +28,24 @@ describe('HomeComponent', () => {
     component = fixture.componentInstance;
   });
 
-  it('can load instance', () => {
+  it('should load the component instance', () => {
     expect(component).toBeTruthy();
   });
 
-  it(`lat has default value`, () => {
+  it(`lat should has the default value`, () => {
     expect(component.lat).toEqual(0);
   });
 
-  it(`lon has default value`, () => {
+  it(`lon should has the default value`, () => {
     expect(component.lon).toEqual(0);
   });
 
-  it(`data has default value`, () => {
+  it(`data should has the default value`, () => {
     expect(component.data).toEqual(60);
   });
 
-  describe('ngOnInit', () => {
-    it('makes expected calls', () => {
+  describe('ngOnInit lifecycle hook', () => {
+    it('should make the expected calls', () => {
       const authServiceStub: AuthService = fixture.debugElement.injector.get(
         AuthService
       );
@@ -60,8 +60,8 @@ describe('HomeComponent', () => {
     });
   });
 
-  describe('logout', () => {
-    it('makes expected calls', () => {
+  describe('logout method', () => {
+    it('should make the expected calls', () => {
       const authServiceStub: AuthService = fixture.debugElement.injector.get(
         AuthService
       );
@@ -74,8 +74,8 @@ describe('HomeComponent', () => {
     });
   });
 
-  describe('getUserLocation', () => {
-    it('makes expected calls', () => {
+  describe('getUserLocation method', () => {
+    it('should make the expected calls', () => {
       const weatherServiceStub: WeatherService = fixture.debugElement.injector.get(
         WeatherService
       );

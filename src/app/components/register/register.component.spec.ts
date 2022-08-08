@@ -25,28 +25,28 @@ describe('RegisterComponent', () => {
     component = fixture.componentInstance;
   });
 
-  it('can load instance', () => {
+  it('should load the component instance', () => {
     expect(component).toBeTruthy();
   });
 
-  it(`isError has default value`, () => {
+  it(`isError should has the default value`, () => {
     expect(component.isError).toEqual(false);
   });
 
-  it(`isEmailError has default value`, () => {
+  it(`isEmailError should has the default value`, () => {
     expect(component.isEmailError).toEqual(false);
   });
 
-  it(`isPasswordError has default value`, () => {
+  it(`isPasswordError should has the default value`, () => {
     expect(component.isPasswordError).toEqual(false);
   });
 
-  it(`isConfirmPasswordError has default value`, () => {
+  it(`isConfirmPasswordError should has the default value`, () => {
     expect(component.isConfirmPasswordError).toEqual(false);
   });
 
-  describe('validate', () => {
-    it('makes expected calls', () => {
+  describe('validate method', () => {
+    it('should make the expected calls', () => {
       const routerStub: Router = fixture.debugElement.injector.get(Router);
       spyOn(routerStub, 'navigate').and.callThrough();
       component.validate();
@@ -54,8 +54,8 @@ describe('RegisterComponent', () => {
     });
   });
 
-  describe('register', () => {
-    it('makes expected calls', () => {
+  describe('register method', () => {
+    it('should make the expected calls', () => {
       const authServiceStub: AuthService = fixture.debugElement.injector.get(
         AuthService
       );

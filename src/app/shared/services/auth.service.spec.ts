@@ -25,12 +25,12 @@ describe('AuthService', () => {
     service = TestBed.inject(AuthService);
   });
 
-  it('can load instance', () => {
+  it('should load the service instance', () => {
     expect(service).toBeTruthy();
   });
 
-  describe('logout', () => {
-    it('makes expected calls', () => {
+  describe('logout method', () => {
+    it('should make the expected calls', () => {
       const angularFireAuthStub: AngularFireAuth = TestBed.inject(
         AngularFireAuth
       );

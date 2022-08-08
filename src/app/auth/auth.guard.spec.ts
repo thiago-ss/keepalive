@@ -21,12 +21,12 @@ describe('AuthGuard', () => {
     service = TestBed.inject(AuthGuard);
   });
 
-  it('can load instance', () => {
+  it('should load the service instance', () => {
     expect(service).toBeTruthy();
   });
 
-  describe('canActivate', () => {
-    it('makes expected calls', () => {
+  describe('canActivate interface', () => {
+    it('should make the expected calls', () => {
       const routerStub: Router = TestBed.inject(Router);
       spyOn(routerStub, 'navigate').and.callThrough();
       service.canActivate();
