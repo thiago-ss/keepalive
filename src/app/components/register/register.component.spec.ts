@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth.service';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register.component';
 
 describe('RegisterComponent', () => {
@@ -13,7 +13,7 @@ describe('RegisterComponent', () => {
     const routerStub = () => ({ navigate: (array: any) => ({}) });
     const authServiceStub = () => ({ register: (email: any, password: any) => ({}) });
     TestBed.configureTestingModule({
-      imports: [FormsModule],
+      imports: [FormsModule, ReactiveFormsModule],
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [RegisterComponent],
       providers: [
@@ -61,7 +61,7 @@ describe('RegisterComponent', () => {
       );
       spyOn(authServiceStub, 'register').and.callThrough();
       component.register();
-      expect(authServiceStub.register).toHaveBeenCalled();
+      expect(authServiceStub.register).toHaveBeenCalledTimes(1);
     });
   });
 });

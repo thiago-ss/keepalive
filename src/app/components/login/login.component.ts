@@ -22,7 +22,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
     ])
   ]
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
   email: string = '';
   password: string = '';
@@ -42,9 +42,6 @@ export class LoginComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit(): void {
-  }
-  
   errorHandler() {
     if(this.loginForm.controls['email'].errors) {
       this.isEmailError = true;
@@ -81,7 +78,7 @@ export class LoginComponent implements OnInit {
     }
 
     this.isLoggedIn = this.authService.login(this.email, this.password);
-    
+
     this.email = '';
     this.password = '';
   }

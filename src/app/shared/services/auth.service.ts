@@ -3,7 +3,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth'
 import { Router } from '@angular/router';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'any'
 })
 export class AuthService {
 
@@ -20,7 +20,7 @@ export class AuthService {
       error = true;
       this.router.navigate(['/login'])
     });
-    
+
     if(error)
       return error;
   }

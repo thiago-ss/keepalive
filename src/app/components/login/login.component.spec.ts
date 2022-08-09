@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth.service';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login.component';
 
 describe('LoginComponent', () => {
@@ -13,7 +13,7 @@ describe('LoginComponent', () => {
     const routerStub = () => ({ navigate: (array: any) => ({}) });
     const authServiceStub = () => ({ login: (email: any, password: any) => ({}) });
     TestBed.configureTestingModule({
-      imports: [FormsModule],
+      imports: [FormsModule, ReactiveFormsModule],
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [LoginComponent],
       providers: [
@@ -59,9 +59,10 @@ describe('LoginComponent', () => {
       const authServiceStub: AuthService = fixture.debugElement.injector.get(
         AuthService
       );
-      spyOn(authServiceStub, 'login').and.callThrough();
+      let mySpy = spyOn(authServiceStub, 'login');
+      expect(mySpy).toHaveBeenCalled();
       component.login();
-      expect(authServiceStub.login).toHaveBeenCalled();
+      // expect(authServiceStub.login).toHaveBeenCalled();
     });
   });
 });

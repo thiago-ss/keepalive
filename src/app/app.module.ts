@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -32,7 +33,7 @@ registerLocaleData(localePt)
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [WeatherService],
+  providers: [WeatherService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

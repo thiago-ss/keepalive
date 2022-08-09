@@ -13,12 +13,12 @@ export class HomeComponent implements OnInit {
   lon: number = 0;
   weatherData: any;
   actualDateTime: number = Date.now();
-  data: number = 60;
-  
+  data: number = 10;
+
 
   constructor(
-    private authService: AuthService, 
-    private weatherService: WeatherService, 
+    private authService: AuthService,
+    private weatherService: WeatherService,
     private router: Router,
   ) { }
 
