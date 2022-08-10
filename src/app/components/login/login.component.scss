@@ -175,12 +175,19 @@
                     height: 65px;
                 }
             }
-            #link {
+            .link-wrapper {
                 display: flex;
                 justify-content: center;
-                margin-bottom: 30px;
-                text-decoration: none;
-                color: $text-color;
+                 span {
+                    color: $white;
+                 }
+                #link {
+                    margin-bottom: 30px;
+                    text-decoration: none;
+                    color: $text-color;
+                    color: $error-color;
+                    text-decoration: dashed;
+                }
             }
         }
     }
