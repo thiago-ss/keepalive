@@ -1,0 +1,2143 @@
+{
+    "pipes": [],
+    "interfaces": [
+        {
+            "name": "User",
+            "id": "interface-User-9c7e5f1bbbab702cb032307d130876cb68969b0cd4eedef32a0c8cad8081a54e5f8f577ed6ad4539c1b99a1d246cb34031d198c2ea8eba440e64e91b14f01fdc",
+            "file": "src/stories/User.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "export interface User {}\n",
+            "properties": [],
+            "indexSignatures": [],
+            "methods": []
+        }
+    ],
+    "injectables": [
+        {
+            "name": "AuthService",
+            "id": "injectable-AuthService-c91049e614ecbbb61aa3fbb1f57acc28384388480a92377ecf951b8e2d208c141ba41be6d9c71f86fe74e34e9febf62de13434c994298139a0d25a725b3f9eca",
+            "file": "src/app/shared/services/auth.service.ts",
+            "properties": [],
+            "methods": [
+                {
+                    "name": "login",
+                    "args": [
+                        {
+                            "name": "email",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "password",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 12,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "email",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "password",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "logout",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 38,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "register",
+                    "args": [
+                        {
+                            "name": "email",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "password",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 28,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "email",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "password",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\r\nimport { AngularFireAuth } from '@angular/fire/compat/auth'\r\nimport { Router } from '@angular/router';\r\n\r\n@Injectable({\r\n  providedIn: 'any'\r\n})\r\nexport class AuthService {\r\n\r\n  constructor(private fireAuth: AngularFireAuth, private router: Router) {}\r\n\r\n  login(email: string, password: string) {\r\n    let error: any;\r\n\r\n    this.fireAuth.signInWithEmailAndPassword(email, password).then(() => {\r\n      localStorage.setItem('token', 'true');\r\n      this.router.navigate(['/home'])\r\n    }, err => {\r\n      alert(err.message);\r\n      error = true;\r\n      this.router.navigate(['/login'])\r\n    });\r\n\r\n    if(error)\r\n      return error;\r\n  }\r\n\r\n  register(email: string, password: string) {\r\n    this.fireAuth.createUserWithEmailAndPassword(email, password).then(() => {\r\n      alert('Registration successful');\r\n      this.router.navigate(['/home']);\r\n    }, err => {\r\n      alert(err.message);\r\n      this.router.navigate(['/register']);\r\n    });\r\n  }\r\n\r\n  logout() {\r\n    this.fireAuth.signOut().then(() => {\r\n      localStorage.removeItem('token');\r\n      this.router.navigate(['/login'])\r\n    }, err => {\r\n      alert(err.message);\r\n    });\r\n  }\r\n}\r\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "fireAuth",
+                        "type": "AngularFireAuth",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 8,
+                "jsdoctags": [
+                    {
+                        "name": "fireAuth",
+                        "type": "AngularFireAuth",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "type": "injectable"
+        },
+        {
+            "name": "WeatherService",
+            "id": "injectable-WeatherService-4031a6ad139ceabb204177d614a16ce26032c4a73e47b87ca0fece165a246123c6b876a1b8d9113fe1da026effb0aa6ad83af6c1db2e68186776a99273d390a2",
+            "file": "src/app/shared/services/weather.service.ts",
+            "properties": [],
+            "methods": [
+                {
+                    "name": "getWeatherData",
+                    "args": [
+                        {
+                            "name": "lat",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "lon",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 12,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "lat",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "lon",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\r\nimport { HttpClient, HttpParams } from '@angular/common/http'\r\nimport { environment } from 'src/environments/environment';\r\n\r\n@Injectable({\r\n  providedIn: 'any'\r\n})\r\nexport class WeatherService {\r\n\r\n  constructor(private httpClient: HttpClient) {}\r\n\r\n  getWeatherData(lat: number, lon: number) {\r\n    let params = new HttpParams()\r\n    .set('lat', lat)\r\n    .set('lon', lon)\r\n    .set('units', 'metric')\r\n    .set('appid', environment.APPID)\r\n\r\n    return this.httpClient.get(environment.apiUrl, { params });\r\n  }\r\n}\r\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "httpClient",
+                        "type": "HttpClient",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 8,
+                "jsdoctags": [
+                    {
+                        "name": "httpClient",
+                        "type": "HttpClient",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "type": "injectable"
+        }
+    ],
+    "guards": [
+        {
+            "name": "AuthGuard",
+            "id": "injectable-AuthGuard-d9da703eedeedec8fbe88e6773ae669d81c5019b3d0fd3bb6ced93df379b415a5de19dd780f8e6bfdca1236e3562ccc38c2326a76ebe0a895f14f7aff83ec492",
+            "file": "src/app/auth/auth.guard.ts",
+            "properties": [],
+            "methods": [
+                {
+                    "name": "canActivate",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "boolean",
+                    "typeParameters": [],
+                    "line": 10,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\r\nimport { AngularFireAuth } from '@angular/fire/compat/auth';\r\nimport { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\nexport class AuthGuard implements CanActivate {\r\n  constructor(private fireAuth: AngularFireAuth, private router: Router) {}\r\n\r\n  canActivate() {\r\n    this.fireAuth.authState.subscribe(response => {\r\n      if((localStorage.getItem('token') == null) && (response?.uid == null)){\r\n        this.router.navigate(['/login'])\r\n      }\r\n    });\r\n   return true;\r\n  }\r\n}",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "fireAuth",
+                        "type": "AngularFireAuth",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 7,
+                "jsdoctags": [
+                    {
+                        "name": "fireAuth",
+                        "type": "AngularFireAuth",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "type": "guard"
+        }
+    ],
+    "interceptors": [],
+    "classes": [],
+    "directives": [],
+    "components": [
+        {
+            "name": "AppComponent",
+            "id": "component-AppComponent-01ad73f9b56b822592254bb86286a9ca6ebd7737fa5b8c1f2444c2c29a1163223b9383fd97ef8b8274243107092a485f9e5928b327e812933199a4fe678b1df1",
+            "file": "src/app/app.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-root",
+            "styleUrls": [
+                "./app.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./app.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "title",
+                    "defaultValue": "'keepalive'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 9
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-root',\r\n  templateUrl: './app.component.html',\r\n  styleUrls: ['./app.component.scss']\r\n})\r\nexport class AppComponent {\r\n  title = 'keepalive';\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./app.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "templateData": "<router-outlet></router-outlet>"
+        },
+        {
+            "name": "ButtonComponent",
+            "id": "component-ButtonComponent-4ef205c97a334c309aa4001c8ab4a6d9571dcae18d0e85aaf0d367467ab5d3a9f13ab3573726f1fcb409bc9b49894dadfb80b1bbe1b6ba7041455ad9d4922004",
+            "file": "src/stories/button.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "storybook-button",
+            "styleUrls": [
+                "./button.css"
+            ],
+            "styles": [],
+            "template": "<button   type=\"button\"\n   (click)=\"onClick.emit($event)\"\n   [ngClass]=\"classes\"\n   [ngStyle]=\"{ 'background-color': backgroundColor }\"\n >\n   {{ label }}\n </button>",
+            "templateUrl": [],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "backgroundColor",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nWhat background color to use\n",
+                    "description": "<p>What background color to use</p>\n",
+                    "line": 26,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "label",
+                    "defaultValue": "'Button'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "pos": 711,
+                            "end": 724,
+                            "flags": 4227072,
+                            "modifierFlagsCache": 0,
+                            "transformFlags": 0,
+                            "kind": 325,
+                            "tagName": {
+                                "pos": 712,
+                                "end": 720,
+                                "flags": 4227072,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 79,
+                                "escapedText": "required"
+                            },
+                            "comment": ""
+                        }
+                    ],
+                    "rawdescription": "\n\nButton contents\n\n",
+                    "description": "<p>Button contents</p>\n",
+                    "line": 40,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "primary",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nIs this the principal call to action on the page?\n",
+                    "description": "<p>Is this the principal call to action on the page?</p>\n",
+                    "line": 20,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "size",
+                    "defaultValue": "'medium'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nHow large should the button be?\n",
+                    "description": "<p>How large should the button be?</p>\n",
+                    "line": 32,
+                    "type": "\"small\" | \"medium\" | \"large\"",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "onClick",
+                    "defaultValue": "new EventEmitter<Event>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nOptional click handler\n",
+                    "description": "<p>Optional click handler</p>\n",
+                    "line": 46,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'storybook-button',\n  template: ` <button\n    type=\"button\"\n    (click)=\"onClick.emit($event)\"\n    [ngClass]=\"classes\"\n    [ngStyle]=\"{ 'background-color': backgroundColor }\"\n  >\n    {{ label }}\n  </button>`,\n  styleUrls: ['./button.css'],\n})\nexport default class ButtonComponent {\n  /**\n   * Is this the principal call to action on the page?\n   */\n  @Input()\n  primary = false;\n\n  /**\n   * What background color to use\n   */\n  @Input()\n  backgroundColor?: string;\n\n  /**\n   * How large should the button be?\n   */\n  @Input()\n  size: 'small' | 'medium' | 'large' = 'medium';\n\n  /**\n   * Button contents\n   *\n   * @required\n   */\n  @Input()\n  label = 'Button';\n\n  /**\n   * Optional click handler\n   */\n  @Output()\n  onClick = new EventEmitter<Event>();\n\n  public get classes(): string[] {\n    const mode = this.primary ? 'storybook-button--primary' : 'storybook-button--secondary';\n\n    return ['storybook-button', `storybook-button--${this.size}`, mode];\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".storybook-button {\n  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;\n  font-weight: 700;\n  border: 0;\n  border-radius: 3em;\n  cursor: pointer;\n  display: inline-block;\n  line-height: 1;\n}\n.storybook-button--primary {\n  color: white;\n  background-color: #1ea7fd;\n}\n.storybook-button--secondary {\n  color: #333;\n  background-color: transparent;\n  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset;\n}\n.storybook-button--small {\n  font-size: 12px;\n  padding: 10px 16px;\n}\n.storybook-button--medium {\n  font-size: 14px;\n  padding: 11px 20px;\n}\n.storybook-button--large {\n  font-size: 16px;\n  padding: 12px 24px;\n}\n",
+                    "styleUrl": "./button.css"
+                }
+            ],
+            "stylesData": "",
+            "accessors": {
+                "classes": {
+                    "name": "classes",
+                    "getSignature": {
+                        "name": "classes",
+                        "type": "[]",
+                        "returnType": "string[]",
+                        "line": 48
+                    }
+                }
+            }
+        },
+        {
+            "name": "HeaderComponent",
+            "id": "component-HeaderComponent-a557eec14f72c438a8033301f4d6ce023e0a1844a3b06ec2b38794a612acc31735ae78a5ee10071b230c8c20d699eb914554e69d07ade54adb371da8efb464cc",
+            "file": "src/stories/header.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "storybook-header",
+            "styleUrls": [
+                "./header.css"
+            ],
+            "styles": [],
+            "template": "<header>    <div class=\"wrapper\">\n      <div>\n        <svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" xmlns=\"http://www.w3.org/2000/svg\">\n          <g fill=\"none\" fillRule=\"evenodd\">\n            <path\n              d=\"M10 0h12a10 10 0 0110 10v12a10 10 0 01-10 10H10A10 10 0 010 22V10A10 10 0 0110 0z\"\n              fill=\"#FFF\"\n            />\n            <path\n              d=\"M5.3 10.6l10.4 6v11.1l-10.4-6v-11zm11.4-6.2l9.7 5.5-9.7 5.6V4.4z\"\n              fill=\"#555AB9\"\n            />\n            <path\n              d=\"M27.2 10.6v11.2l-10.5 6V16.5l10.5-6zM15.7 4.4v11L6 10l9.7-5.5z\"\n              fill=\"#91BAF8\"\n            />\n          </g>\n        </svg>\n        <h1>Acme</h1>\n      </div>\n      <div>\n        <div *ngIf=\"user\">\n          <span class=\"welcome\">\n            Welcome, <b>{{ user.name }}</b\n            >!\n          </span>\n          <storybook-button\n            *ngIf=\"user\"\n            size=\"small\"\n            (onClick)=\"onLogout.emit($event)\"\n            label=\"Log out\"\n          ></storybook-button>\n        </div>\n        <div *ngIf=\"!user\">\n          <storybook-button\n            *ngIf=\"!user\"\n            size=\"small\"\n            class=\"margin-left\"\n            (onClick)=\"onLogin.emit($event)\"\n            label=\"Log in\"\n          ></storybook-button>\n          <storybook-button\n            *ngIf=\"!user\"\n            primary\n            size=\"small\"\n            primary=\"true\"\n            class=\"margin-left\"\n            (onClick)=\"onCreateAccount.emit($event)\"\n            label=\"Sign up\"\n          ></storybook-button>\n        </div>\n      </div>\n    </div>\n  </header>",
+            "templateUrl": [],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "user",
+                    "defaultValue": "null",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 65,
+                    "type": "User | null",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "onCreateAccount",
+                    "defaultValue": "new EventEmitter<Event>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 74,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "onLogin",
+                    "defaultValue": "new EventEmitter<Event>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 68,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "onLogout",
+                    "defaultValue": "new EventEmitter<Event>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 71,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\nimport { User } from './User';\n\n@Component({\n  selector: 'storybook-header',\n  template: `<header>\n    <div class=\"wrapper\">\n      <div>\n        <svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" xmlns=\"http://www.w3.org/2000/svg\">\n          <g fill=\"none\" fillRule=\"evenodd\">\n            <path\n              d=\"M10 0h12a10 10 0 0110 10v12a10 10 0 01-10 10H10A10 10 0 010 22V10A10 10 0 0110 0z\"\n              fill=\"#FFF\"\n            />\n            <path\n              d=\"M5.3 10.6l10.4 6v11.1l-10.4-6v-11zm11.4-6.2l9.7 5.5-9.7 5.6V4.4z\"\n              fill=\"#555AB9\"\n            />\n            <path\n              d=\"M27.2 10.6v11.2l-10.5 6V16.5l10.5-6zM15.7 4.4v11L6 10l9.7-5.5z\"\n              fill=\"#91BAF8\"\n            />\n          </g>\n        </svg>\n        <h1>Acme</h1>\n      </div>\n      <div>\n        <div *ngIf=\"user\">\n          <span class=\"welcome\">\n            Welcome, <b>{{ user.name }}</b\n            >!\n          </span>\n          <storybook-button\n            *ngIf=\"user\"\n            size=\"small\"\n            (onClick)=\"onLogout.emit($event)\"\n            label=\"Log out\"\n          ></storybook-button>\n        </div>\n        <div *ngIf=\"!user\">\n          <storybook-button\n            *ngIf=\"!user\"\n            size=\"small\"\n            class=\"margin-left\"\n            (onClick)=\"onLogin.emit($event)\"\n            label=\"Log in\"\n          ></storybook-button>\n          <storybook-button\n            *ngIf=\"!user\"\n            primary\n            size=\"small\"\n            primary=\"true\"\n            class=\"margin-left\"\n            (onClick)=\"onCreateAccount.emit($event)\"\n            label=\"Sign up\"\n          ></storybook-button>\n        </div>\n      </div>\n    </div>\n  </header>`,\n  styleUrls: ['./header.css'],\n})\nexport default class HeaderComponent {\n  @Input()\n  user: User | null = null;\n\n  @Output()\n  onLogin = new EventEmitter<Event>();\n\n  @Output()\n  onLogout = new EventEmitter<Event>();\n\n  @Output()\n  onCreateAccount = new EventEmitter<Event>();\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".wrapper {\n  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;\n  border-bottom: 1px solid rgba(0, 0, 0, 0.1);\n  padding: 15px 20px;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n}\n\nsvg {\n  display: inline-block;\n  vertical-align: top;\n}\n\nh1 {\n  font-weight: 900;\n  font-size: 20px;\n  line-height: 1;\n  margin: 6px 0 6px 10px;\n  display: inline-block;\n  vertical-align: top;\n}\n\nbutton + button {\n  margin-left: 10px;\n}\n\n.welcome {\n  color: #333;\n  font-size: 14px;\n  margin-right: 10px;\n}\n",
+                    "styleUrl": "./header.css"
+                }
+            ],
+            "stylesData": ""
+        },
+        {
+            "name": "HomeComponent",
+            "id": "component-HomeComponent-387b2f863d9f2a91a4dd2ed24027a9e40bbb8b49d8487fbf3b481a413c844040a358cd2bd494f6ea69ff190676892b19eff92654731266dbfcc6d601dcb0048a",
+            "file": "src/app/components/home/home.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-home",
+            "styleUrls": [
+                "./home.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./home.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "actualDateTime",
+                    "defaultValue": "Date.now()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "optional": false,
+                    "description": "",
+                    "line": 15
+                },
+                {
+                    "name": "countdown",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "any",
+                    "optional": false,
+                    "description": "",
+                    "line": 17
+                },
+                {
+                    "name": "lat",
+                    "defaultValue": "0",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "optional": false,
+                    "description": "",
+                    "line": 12
+                },
+                {
+                    "name": "lon",
+                    "defaultValue": "0",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "optional": false,
+                    "description": "",
+                    "line": 13
+                },
+                {
+                    "name": "time",
+                    "defaultValue": "60",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "optional": false,
+                    "description": "",
+                    "line": 16
+                },
+                {
+                    "name": "weatherData",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "any",
+                    "optional": false,
+                    "description": "",
+                    "line": 14
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "getUserLocation",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 49,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "getUserPosition",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 57,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "logout",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 45,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "ngOnDestroy",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 25,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 29,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "refresh",
+                    "args": [
+                        {
+                            "name": "time",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 34,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "time",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, OnDestroy, OnInit } from '@angular/core';\r\nimport { AuthService } from 'src/app/shared/services/auth.service';\r\nimport { WeatherService } from 'src/app/shared/services/weather.service';\r\nimport { Router } from '@angular/router';\r\n\r\n@Component({\r\n  selector: 'app-home',\r\n  templateUrl: './home.component.html',\r\n  styleUrls: ['./home.component.scss']\r\n})\r\nexport class HomeComponent implements OnInit, OnDestroy {\r\n  lat: number = 0;\r\n  lon: number = 0;\r\n  weatherData: any;\r\n  actualDateTime: number = Date.now();\r\n  time: number = 60;\r\n  countdown: any;\r\n\r\n  constructor(\r\n    private authService: AuthService,\r\n    private weatherService: WeatherService,\r\n    private router: Router,\r\n  ) { }\r\n\r\n  ngOnDestroy(): void {\r\n    clearInterval(this.countdown);\r\n  }\r\n\r\n  ngOnInit(): void {\r\n    this.getUserLocation();\r\n    this.countdown = this.refresh(this.time);\r\n  }\r\n\r\n  refresh(time: number) {\r\n    this.countdown = setInterval(() => {\r\n      if(time <= 0) {\r\n        this.authService.logout();\r\n        this.router.navigate(['/login']);\r\n      } else {\r\n        this.time--;\r\n      }\r\n    }, 1000)\r\n  }\r\n\r\n  logout() {\r\n    this.authService.logout();\r\n  }\r\n\r\n  getUserLocation() {\r\n    this.weatherService.getWeatherData( -23.5489, -46.6388).\r\n    subscribe((weather) => {\r\n     this.weatherData = weather;\r\n    });\r\n    this.getUserPosition();\r\n  }\r\n\r\n  getUserPosition() {\r\n    if(\"geolocation\" in navigator) {\r\n      navigator.geolocation.watchPosition((success) => {\r\n        this.lat = success.coords.latitude;\r\n        this.lon = success.coords.longitude;\r\n\r\n        this.weatherService.getWeatherData(this.lat, this.lon).subscribe(data => {\r\n          this.weatherData = data;\r\n        })\r\n      })\r\n    }\r\n  }\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@import '../../../styles.scss';\r\n\r\n.wrapper {\r\n    // position: absolute;\r\n    // width: 100%;\r\n    // bottom: 0;\r\n    // height: 68%;\r\n\r\n    max-height: 100vh;\r\n}\r\n.header {\r\n    margin-top: 25px;\r\n    margin-left: 40px;\r\n    margin-right: 40px;\r\n    display: flex;\r\n    justify-content: space-between;\r\n    @include responsive(mobileL) {\r\n        margin-left: 10px;\r\n        margin-right: 10px;\r\n        justify-content: space-around;\r\n    }\r\n    @include responsive(mobileS) {\r\n        margin-left: 10px;\r\n        margin-right: 10px;\r\n        justify-content: space-around;\r\n    }\r\n    .time {\r\n        display: flex;\r\n        flex-direction: column;\r\n        @include responsive(mobileS) {\r\n            display: none;\r\n        }\r\n        @include responsive(mobileL) {\r\n            display: none;\r\n        }\r\n        span {\r\n            font-weight: 700;\r\n            font-size: 144px;\r\n            color: $dark-text-color;\r\n            line-height: 100px;\r\n            margin-top: 35px;\r\n            @include responsive(tablet) {\r\n                font-size: 50px;\r\n                margin-top: 10px;\r\n                line-height: 30px;\r\n                text-align: center;\r\n            }\r\n            @include responsive(mobileL) {\r\n                font-size: 30px;\r\n                margin-top: 5px;\r\n                line-height: 30px;\r\n                text-align: center;\r\n            }\r\n            @include responsive(mobileS) {\r\n                font-size: 30px;\r\n                margin-top: 5px;\r\n                line-height: 30px;\r\n                text-align: center;\r\n            }\r\n        }\r\n        p {\r\n            color: $dark-text-color;\r\n            text-align: center;\r\n            @include responsive(mobileS) {\r\n                display: none;\r\n            }\r\n            @include responsive(mobileL) {\r\n                display: none;\r\n            }\r\n        }\r\n    }\r\n    .weatherWidget {\r\n        display: flex;\r\n        flex-direction: column;   \r\n        .location {\r\n            p {\r\n                margin: 0;\r\n                line-height: 30px;\r\n                font-size: 20px;\r\n                @include responsive(mobileL) {\r\n                    font-size: 15px;\r\n                    line-height: 5px;\r\n                }\r\n                @include responsive(mobileS) {\r\n                    font-size: 15px;\r\n                    line-height: 5px;\r\n                }\r\n            }\r\n        }\r\n        .weather {\r\n            display: flex;\r\n            align-items: center;\r\n            gap: 12px;\r\n            @include responsive(tablet) {\r\n                gap: 5px;\r\n            }\r\n            @include responsive(mobileL) {\r\n                gap: 5px;\r\n            }\r\n            img {\r\n                width: 32px;\r\n                margin-bottom: 15px;\r\n                @include responsive(mobileL) {\r\n                    width: 25px;\r\n                    margin-top: 15px;\r\n                }\r\n                @include responsive(mobileS) {\r\n                    width: 25px;\r\n                    margin-top: 15px;\r\n                }\r\n            }\r\n            p {\r\n                font-weight: 700;\r\n                font-size: 48px;\r\n                @include responsive(tablet) {\r\n                    font-size: 35px;\r\n                }\r\n                @include responsive(mobileL) {\r\n                    font-size: 30px;\r\n                }\r\n                @include responsive(mobileS) {\r\n                    font-size: 27px;\r\n                }\r\n            }\r\n        }\r\n    }\r\n}\r\n.main {\r\n    display: flex;\r\n    justify-content: space-between;\r\n    text-align: right;\r\n    margin-right: 135px;\r\n    align-items: center;\r\n    gap: 10px;\r\n    @include responsive(tablet) {\r\n        margin-right: 50px;\r\n        max-height: 100%;\r\n    }\r\n    @include responsive(mobileL) {\r\n        width: 100%;\r\n        margin-top: 3rem;\r\n        margin-bottom: 4rem;\r\n        justify-content: center;\r\n    }\r\n    @include responsive(mobileS) {\r\n        width: 100%;\r\n        margin-top: 3rem;\r\n        margin-bottom: 4rem;\r\n        justify-content: center;\r\n        align-items: center;\r\n        padding-right: 1rem;\r\n    }\r\n    #logo-xl {\r\n        @include responsive(tablet) {\r\n            width: 350px;\r\n        }\r\n        @include responsive(mobileL) {\r\n            display: none;\r\n        }\r\n        @include responsive(mobileS) {\r\n            display: none;\r\n        }\r\n    }\r\n    .span {\r\n        font-size: 24px;\r\n        line-height: 10px;\r\n        @include responsive(tablet) {\r\n            font-size: 16px;\r\n        }\r\n        @include responsive(mobileL) {\r\n            font-size: 16px;\r\n        }   \r\n        @include responsive(mobileS) {\r\n            font-size: 14px;\r\n        }     \r\n    }\r\n    .text-1 {\r\n        p {\r\n            font-weight: 700;\r\n            font-size: 36px;\r\n            color: $red-text-color;\r\n            @include responsive(tablet) {\r\n                font-size: 20px;\r\n            }\r\n            @include responsive(mobileL) {\r\n                font-size: 20px;\r\n            }\r\n            @include responsive(mobileS) {\r\n                font-size: 16px;\r\n            }\r\n        }\r\n    }\r\n    .phrase-large {\r\n        font-weight: 700;\r\n        font-size: 64px;\r\n        color: $red-text-color;\r\n        @include responsive(tablet) {\r\n            font-size: 20px;\r\n        }\r\n        @include responsive(mobileL) {\r\n            font-size: 20px;\r\n        }\r\n        @include responsive(mobileS) {\r\n            font-size: 16px;\r\n        }\r\n    }\r\n}\r\n.footer {\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: space-between;\r\n    height: 100px;\r\n    background: linear-gradient(90.16deg, #33383D 0%, #1C1D20 100%);\r\n    @include responsive(tablet) {\r\n        justify-content: space-around;\r\n    }\r\n    @include responsive(mobileL) {\r\n        flex-direction: column;\r\n        justify-content: space-around;\r\n        height: 350px;\r\n    }\r\n    @include responsive(mobileS) {\r\n        flex-direction: column;\r\n        justify-content: space-around;\r\n        height: 350px;\r\n    }\r\n    .footer-info {\r\n        margin-left: 360px;\r\n        @include responsive(tablet) {\r\n            margin: 0;\r\n        }\r\n        @include responsive(mobileL) {\r\n            margin: 0;\r\n        }\r\n        @include responsive(mobileS) {\r\n            margin: 0;\r\n        }\r\n        .footer-text {\r\n            display: flex;\r\n            gap: 35px;\r\n            font-size: 12px;\r\n            color: $white;\r\n            text-align: right;\r\n            align-items: center;\r\n            max-width: 514px;\r\n            @include responsive(tablet) {\r\n                font-size: 10px;\r\n                gap: 17px;\r\n                justify-content: space-around;\r\n            }\r\n            @include responsive(mobileL) {\r\n                margin-right: 10px;\r\n                margin-left: 10px;\r\n                text-align: center;\r\n            }\r\n            @include responsive(mobileS) {\r\n                margin-right: 10px;\r\n                margin-left: 10px;\r\n                text-align: center;\r\n            }\r\n            img {\r\n                @include responsive(mobileL) {\r\n                    display: none;\r\n                }\r\n                @include responsive(mobileS) {\r\n                    display: none;\r\n                }\r\n            }\r\n        }\r\n    }\r\n    .refresh-timeout {\r\n        display: flex;\r\n        gap: 33px;\r\n        color: $white;\r\n        text-align: right;\r\n        align-items: center;\r\n        @include responsive(tablet) {\r\n            font-size: 14px;\r\n            margin-right: 20px;\r\n            margin-left: 20px;\r\n        }\r\n        @include responsive(mobileS) {\r\n            font-size: 12px;\r\n        }\r\n        .refresh-time {\r\n            margin-top: 20px;\r\n            display: flex;\r\n            flex-direction: column;\r\n            text-align: center;\r\n            @include responsive(mobileS) {\r\n                font-size: 14px;\r\n            }\r\n            span {\r\n                font-weight: 700;\r\n                font-size: 48px;\r\n                line-height: 30px;\r\n                @include responsive(tablet) {\r\n                    font-size: 30px;\r\n                }\r\n                @include responsive(mobileL) {\r\n                    font-size: 38px;\r\n                }\r\n                @include responsive(mobileS) {\r\n                    font-size: 30px;\r\n                }\r\n            }\r\n        }\r\n    }\r\n    .footer-buttons {\r\n        display: flex;\r\n        align-items: center;\r\n        @include responsive(mobileL) {\r\n            width: 100%;\r\n            flex-direction: column;\r\n        }\r\n        @include responsive(mobileS) {\r\n            width: 100%;\r\n            \r\n            flex-direction: column;\r\n        }\r\n        .continue {\r\n            cursor: pointer;\r\n            background-color: $white;\r\n            width: 131px;\r\n            padding: 36px 18px;\r\n            @include responsive(tablet) {\r\n                width: 110px;\r\n            }\r\n            @include responsive(mobileL) {\r\n                width: 100%;\r\n            }\r\n            @include responsive(mobileS) {\r\n                width: 100%;\r\n            }\r\n            p {\r\n                text-align: center;\r\n                color: $red-text-color;\r\n                font-size: 12px;\r\n                line-height: 15px;\r\n            }\r\n        }\r\n        .logout {\r\n            cursor: pointer;\r\n            width: 131px;\r\n            padding: 36px 18px;\r\n            @include responsive(tablet) {\r\n                width: 110px;\r\n            }\r\n            @include responsive(mobileL) {\r\n                width: 100%;\r\n            }\r\n            @include responsive(mobileS) {\r\n                width: 100%;\r\n            }\r\n            p {\r\n                color: $white;\r\n                font-weight: 700;\r\n                font-size: 12px;\r\n                text-align: center;\r\n            }\r\n        }\r\n    }\r\n}",
+                    "styleUrl": "./home.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "authService",
+                        "type": "AuthService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "weatherService",
+                        "type": "WeatherService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 17,
+                "jsdoctags": [
+                    {
+                        "name": "authService",
+                        "type": "AuthService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "weatherService",
+                        "type": "WeatherService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "implements": [
+                "OnInit",
+                "OnDestroy"
+            ],
+            "templateData": "<div class=\"header mark-font\">\r\n    <div class=\"logo\">\r\n        <img src=\"../../../assets/compass03.png\" alt=\"Logo Compass\">\r\n    </div>\r\n    <div class=\"time\">\r\n        <span>{{ actualDateTime | date:'shortTime':'':'pt' }}</span>\r\n        <p>{{ actualDateTime | date:'fullDate':'':'pt' }}</p>\r\n    </div>\r\n    <div class=\"weatherWidget\">\r\n        <div class=\"location\">\r\n            <p>{{ weatherData.name }} - {{ weatherData.sys.country }}</p>\r\n        </div>\r\n        <div class=\"weather\">\r\n            <span><img src=\"../../../assets/icons/{{ weatherData.weather[0].icon }}.png\" alt=\"\"></span>\r\n            <p>{{ weatherData.main.temp | number: '1.0-0' }}°</p>\r\n        </div>\r\n    </div>\r\n</div>\r\n<div class=\"wrapper\">\r\n    <div class=\"main\">\r\n        <div>\r\n            <img id=\"logo-xl\" src=\"../../../assets/logo-xl-cropped.png\" alt=\"Logo UOL\">\r\n        </div>\r\n        <div class=\"main-text mark-font\">\r\n            <div class=\"text-1\">\r\n                <p>Our mission is</p>\r\n                <span class=\"span\">Nossa missão é</span>\r\n            </div>\r\n            <div class=\"text-2\">\r\n                <p class=\"phrase-large\">to transform the world</p>\r\n                <span class=\"span\">transformar o mundo</span>\r\n            </div>\r\n            <div class=\"text-3\">\r\n                <p class=\"phrase-large\">building digital experiences</p>\r\n                <span class=\"span\">construindo experiências digitais</span>\r\n            </div>\r\n            <div class=\"text-4\">\r\n                <p class=\"phrase-large\">that enable our client's growth</p>\r\n                <span class=\"span\">que permitam o crescimento dos nossos clientes</span>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class=\"footer mark-font\">\r\n        <div class=\"footer-info\">\r\n            <div class=\"footer-text\">\r\n                <p>\r\n                    Essa janela do navegador é usada para manter sua sessão de autenticação ativa.\r\n                    Deixe-a aberta em segundo plano e abra uma nova janela para continuar a navegar.\r\n                </p>\r\n                <img src=\"../../../assets/line.png\" alt=\"\">\r\n            </div>\r\n        </div>\r\n        <div class=\"refresh-timeout\">\r\n            <p>Apllication <br> refresh in</p>\r\n            <p class=\"refresh-time\"><span>{{ time }}</span> seconds</p>\r\n        </div>\r\n        <div class=\"footer-buttons\">\r\n            <div class=\"continue\">\r\n                <p>Continuar navegando</p>\r\n            </div>\r\n            <div class=\"logout\">\r\n                <p (click)=\"logout()\">Logout</p>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n"
+        },
+        {
+            "name": "LoginComponent",
+            "id": "component-LoginComponent-d7836d591320d36dbe0b0da5f4b911186ca86e1e54820f2050e80017657327f87edb0ad599185ad3c4f3c4a82b7381cd52599efc5aab4df1a2e744a6c58f7051",
+            "file": "src/app/components/login/login.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-login",
+            "styleUrls": [
+                "./login.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./login.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "email",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 27
+                },
+                {
+                    "name": "isEmailError",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "optional": false,
+                    "description": "",
+                    "line": 30
+                },
+                {
+                    "name": "isLoggedIn",
+                    "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 36
+                },
+                {
+                    "name": "isMoved",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "optional": false,
+                    "description": "",
+                    "line": 29
+                },
+                {
+                    "name": "isPasswordError",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "optional": false,
+                    "description": "",
+                    "line": 31
+                },
+                {
+                    "name": "loginForm",
+                    "defaultValue": "new FormGroup({\r\n    email: new FormControl('', [Validators.required]),\r\n    password: new FormControl('', [Validators.required])\r\n  })",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 32
+                },
+                {
+                    "name": "password",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 28
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "errorHandler",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 43,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "login",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 57,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\nimport { FormControl, FormGroup, Validators } from '@angular/forms';\r\nimport { Router } from '@angular/router';\r\nimport { AuthService } from 'src/app/shared/services/auth.service';\r\nimport { animate, state, style, transition, trigger } from '@angular/animations';\r\n\r\n@Component({\r\n  selector: 'app-login',\r\n  templateUrl: './login.component.html',\r\n  styleUrls: ['./login.component.scss'],\r\n  animations: [\r\n    trigger('warning', [\r\n      state('normal', style({\r\n        borderColor: '#FFF'\r\n      })),\r\n      state('yellow', style({\r\n        borderColor: '#E9B425'\r\n      })),\r\n      transition('normal <=> yellow', [\r\n        animate('0.5s')\r\n      ])\r\n    ])\r\n  ]\r\n})\r\nexport class LoginComponent {\r\n\r\n  email: string = '';\r\n  password: string = '';\r\n  isMoved: boolean = false;\r\n  isEmailError: boolean = false;\r\n  isPasswordError: boolean = false;\r\n  loginForm = new FormGroup({\r\n    email: new FormControl('', [Validators.required]),\r\n    password: new FormControl('', [Validators.required])\r\n  })\r\n  isLoggedIn = true;\r\n\r\n  constructor(\r\n    private authService: AuthService,\r\n    private router: Router\r\n  ) {}\r\n\r\n  errorHandler() {\r\n    if(this.loginForm.controls['email'].errors) {\r\n      this.isEmailError = true;\r\n    } else {\r\n      this.isEmailError = false;\r\n    }\r\n\r\n    if(this.loginForm.controls['password'].errors) {\r\n      this.isPasswordError = true;\r\n    } else {\r\n      this.isPasswordError = false;\r\n    }\r\n  }\r\n\r\n  login() {\r\n    if(this.loginForm.controls.email.errors) {\r\n      this.isEmailError = true;\r\n    } else {\r\n      this.isEmailError = false;\r\n    }\r\n\r\n    if(this.loginForm.controls.password.errors) {\r\n      this.isPasswordError = true;\r\n    } else {\r\n      this.isPasswordError = false;\r\n    }\r\n\r\n    this.isLoggedIn = this.authService.login(this.email, this.password);\r\n\r\n    this.email = '';\r\n    this.password = '';\r\n  }\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@import '../../../styles.scss';\r\n\r\n\r\n.containerr {\r\n    background: linear-gradient(180deg, #33383D 0%, #1C1D20 100%);\r\n    box-shadow: 4px 4px 70px rgba(0, 0, 0, 0.25);\r\n    height: auto;\r\n    display: flex;\r\n    max-width: 100%;\r\n    @include responsive(mobileS) {\r\n        min-height: 100vh;\r\n    }\r\n    @include responsive(mobileL) {\r\n        min-height: 100vh;\r\n    }\r\n    @include responsive(tablet) {\r\n        min-height: 100vh;\r\n    }\r\n    .login-container {\r\n        display: flex;\r\n        justify-content: center;\r\n        align-items: center;\r\n        flex-direction: column;\r\n        width: 50%;\r\n        @include responsive(mobileS) {\r\n            width: 100%;\r\n        }\r\n        @include responsive(mobileL) {\r\n            width: 100%;\r\n        }\r\n        @include responsive(tablet) {\r\n            width: 100%;\r\n        }\r\n        .login-info {\r\n            @include responsive(mobileS) {\r\n                margin: 15px auto 0 auto;\r\n            }\r\n            @include responsive(mobileL) {\r\n                margin: 55px auto 0 65px;\r\n            }\r\n            @include responsive(tablet) {\r\n                position: relative;\r\n                top: 140px;\r\n                left: 20px;\r\n            }\r\n            margin-right: 6.5rem;\r\n            h1 {\r\n                font-size: 60px;\r\n                color: $text-color;\r\n                margin-top: 3rem;\r\n                @include responsive(mobileS) {\r\n                    font-size: 40px;\r\n                    margin-top: 5rem;\r\n                }\r\n                @include responsive(tablet) {\r\n                    margin: 0;\r\n                }\r\n            }\r\n            p {\r\n                font-size: 16px;\r\n                color: $text-color;\r\n                margin-top: 27px;\r\n                @include responsive(mobileS) {\r\n                    font-size: 14px;\r\n                }\r\n            }\r\n        }\r\n        .login-form {\r\n            @include responsive(mobileS) {\r\n                display: flex;\r\n                flex-direction: column;\r\n                align-items: center;\r\n            }\r\n            @include responsive(mobileL) {\r\n                display: flex;\r\n                flex-direction: column;\r\n                align-items: center;\r\n            }\r\n            @include responsive(tablet) {\r\n                display: flex;\r\n                flex-direction: column;\r\n                align-items: center;\r\n            }\r\n            .input {\r\n                display: flex;\r\n                position: relative;\r\n                @include responsive(mobileS) {\r\n                    width: 260px;\r\n                }\r\n                input {\r\n                    display: flex;\r\n                    flex-direction: column;\r\n                    width: 380px;\r\n                    height: 60px;\r\n                    border-radius: 50px;\r\n                    background-color: #26292C;\r\n                    border: 1px solid $white;\r\n                    padding: 20px;\r\n                    color: $text-color;\r\n                    &::placeholder {\r\n                        color: $text-color;\r\n                    }\r\n                    &:active {\r\n                        outline: none;\r\n                    }\r\n                    @include responsive(mobileS) {\r\n                        width: 290px;\r\n                    }\r\n                    @include responsive(mobileL) {\r\n                        width: 320px;\r\n                    }\r\n                }\r\n                img {\r\n                    position: absolute;\r\n                    right: -40px;\r\n                    top: 30%;\r\n                    @include responsive(mobileS) {\r\n                        right: 10px;\r\n                        width: 20px;\r\n                    }\r\n                    @include responsive(mobileL) {\r\n                        right: 20px;\r\n                        width: 20px;\r\n                    }\r\n                }\r\n            }\r\n            h2 {\r\n                @include responsive(mobileS) {\r\n                    margin-top: 50px;\r\n                    position: relative;\r\n                    right: 80px;\r\n                }\r\n                @include responsive(mobileL) {\r\n                    margin-top: 50px;\r\n                    position: relative;\r\n                    right: 107px;\r\n                }\r\n                @include responsive(tablet) {\r\n                    margin-top: 180px;\r\n                    position: relative;\r\n                    right: 130px;\r\n                }\r\n                margin-top: 97px;\r\n                font-weight: 400;\r\n                font-size: 30px;\r\n                color: $text-color;\r\n                margin-bottom: 32px;\r\n            }\r\n            button {\r\n                width: 380px;\r\n                height: 67px;\r\n                text-align: center;\r\n                color: $white;\r\n                background: linear-gradient(90deg, #FF2D04 0%, #C13216 100%);\r\n                box-shadow: inset 5px 5px 15px rgba(0, 0, 0, 0.15);\r\n                border: 2px solid #FF2D04;\r\n                border-radius: 50px;\r\n                margin-top: 105px;\r\n                margin-bottom: 25px;\r\n                font-weight: bold;\r\n                @include responsive(mobileS) {\r\n                    width: 260px;\r\n                    height: 60px;\r\n                    margin-bottom: 20px;\r\n                    margin-top: 50px;\r\n                }\r\n                @include responsive(mobileL) {\r\n                    width: 320px;\r\n                    height: 65px;\r\n                    margin-bottom: 20px;\r\n                }\r\n                @include responsive(tablet) {\r\n                    margin-bottom: 10rem;\r\n                    margin-top: 50px;\r\n                    height: 65px;\r\n                }\r\n            }\r\n            .link-wrapper {\r\n                display: flex;\r\n                justify-content: center;\r\n                 span {\r\n                    color: $white;\r\n                 }\r\n                #link {\r\n                    margin-bottom: 30px;\r\n                    text-decoration: none;\r\n                    color: $text-color;\r\n                    color: $error-color;\r\n                    text-decoration: dashed;\r\n                }\r\n            }\r\n        }\r\n    }\r\n    .logo-container {\r\n        position: relative;\r\n        @include responsive(mobileS) {\r\n            position: absolute;\r\n        }\r\n        @include responsive(mobileL) {\r\n            position: absolute;\r\n        }\r\n        @include responsive(tablet) {\r\n            position: absolute;\r\n        }\r\n        width: 50%;\r\n        #bg {\r\n            width: 100%;\r\n            height: 100%;\r\n            object-fit: fill;\r\n            @include responsive(mobileS) {\r\n                display: none;\r\n            }\r\n            @include responsive(mobileL) {\r\n                display: none;\r\n            }\r\n            @include responsive(tablet) {\r\n                display: none;\r\n            }\r\n            \r\n        }\r\n        #logo {\r\n            position: absolute;\r\n            left: 35%;\r\n            top: 2.5%;\r\n            @include responsive(mobileS) {\r\n                position: absolute;\r\n                width: 210px;\r\n                top: 20px;\r\n                left: 60px;\r\n                margin-bottom: 20px;\r\n            }\r\n            @include responsive(mobileL) {\r\n                position: absolute;\r\n                width: 250px;\r\n                top: 20px;\r\n                left: 75px;\r\n                margin-bottom: 20px;\r\n            }\r\n            @include responsive(tablet) {\r\n                position: absolute;\r\n                width: 250px;\r\n                top: 20px;\r\n                left: 245px;\r\n                margin-bottom: 20px;\r\n            }\r\n        }\r\n    }\r\n}\r\n\r\n.errorMessage {\r\n    display: flex;\r\n    font-weight: 700;\r\n    text-align: center;\r\n    font-size: 16px;\r\n    color: $error-color;\r\n    padding-left: 70px;\r\n    @include responsive(mobileS) {\r\n        padding-left: 15px;\r\n        align-items: center;\r\n    }\r\n    @include responsive(mobileL) {\r\n        align-items: center;\r\n        padding-right: 40px;\r\n    }\r\n    @include responsive(tablet) {\r\n        align-items: center;\r\n        padding-right: 50px;\r\n    }\r\n}\r\n\r\n.in-input {\r\n    position: absolute;\r\n    transform: translateX(-63px);\r\n    transition: .5s;\r\n    @include responsive(mobileS) {\r\n      transform: translateX(0);\r\n      right: 30px;\r\n    }\r\n}\r\n\r\n.out-input {\r\n    position: absolute;\r\n    transition: 0.5s;\r\n    right: -40px;\r\n    top: 15%;\r\n    @include responsive(mobileS) {\r\n     right: 30px;\r\n    }\r\n}\r\n\r\n.inputError {\r\n    border-color: $error-color !important;\r\n}",
+                    "styleUrl": "./login.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "authService",
+                        "type": "AuthService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 36,
+                "jsdoctags": [
+                    {
+                        "name": "authService",
+                        "type": "AuthService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "templateData": "<div class=\"containerr\">\r\n    <div class=\"login-container\">\r\n        <div class=\"login-info mark-font\">\r\n            <h1>Olá,</h1>\r\n            <p>Para continuar navegando de forma <br> segura, efetue o login na rede.</p>\r\n        </div>\r\n        <div class=\"login-form mark-font\">\r\n            <h2>Login</h2>\r\n            <form\r\n                class=\"login-form\"\r\n                [formGroup]=\"loginForm\"\r\n                (change)=\"errorHandler()\"\r\n\r\n            >\r\n                <div class=\"input\" style=\"margin-bottom: 30px;\">\r\n                    <input\r\n                        id=\"email\"\r\n                        type=\"email\"\r\n                        formControlName=\"email\"\r\n                        [@warning]=\"isEmailError ? 'yellow' : 'normal'\"\r\n                        [(ngModel)]=\"email\"\r\n                        placeholder=\"Usuário\"\r\n                    >\r\n                    <img\r\n                        [class.out-input]=\"email == ''\" [class.in-input] =\"email != '' && email != ' '\"\r\n                        src=\"../../../assets/icon-user.svg\"\r\n                        id=\"user-icon-default\"\r\n                    >\r\n                </div>\r\n                <div class=\"input\" style=\"margin-bottom: 30px;\">\r\n                    <input\r\n                        id=\"password\"\r\n                        type=\"password\"\r\n                        formControlName=\"password\"\r\n                        [(ngModel)]=\"password\"\r\n                        [@warning]=\"isPasswordError ? 'yellow' : 'normal'\"\r\n                        placeholder=\"Senha\"\r\n                    >\r\n                    <img\r\n                        [class.out-input]=\"password == ''\" [class.in-input] =\"password != '' && password != ' '\"\r\n                        src=\"../../../assets/icon-password.svg\"\r\n                        id=\"password-icon-default\"\r\n                    >\r\n                </div>\r\n                <label *ngIf=\"isLoggedIn else errorMessage\"></label>\r\n                <button\r\n                    type=\"submit\"\r\n                    (click)=\"login()\"\r\n                    [disabled]=\"!loginForm.valid\">\r\n                    Continuar\r\n                </button>\r\n            </form>\r\n            <div class=\"link-wrapper\">\r\n                <span>Nao possui uma conta?</span>\r\n                <a id=\"link\" href=\"/register\">ㅤCadastre-se</a>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class=\"logo-container\">\r\n        <img src=\"../../../assets/compass02.png\" id=\"logo\" alt=\"Logo\">\r\n        <img src=\"../../../assets/compass01.png\" id=\"bg\" alt=\"Notebook\">\r\n    </div>\r\n</div>\r\n\r\n<ng-template #errorMessage>\r\n    <p class=\"errorMessage mark-font\">Ops, usuario ou senha invalidos. <br> Tente novamente!</p>\r\n</ng-template>\r\n"
+        },
+        {
+            "name": "PageComponent",
+            "id": "component-PageComponent-7126d8c2607c946741c651482413b43feb72b2d63cac9d3ac173fde206a5e635eb4cdbf7ca7ac9327c7d4d05cf7ef619144c34c11609ad677081d0ee4e855064",
+            "file": "src/stories/page.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "storybook-page",
+            "styleUrls": [
+                "./page.css"
+            ],
+            "styles": [],
+            "template": "<article>    <storybook-header\n      [user]=\"user\"\n      (onLogout)=\"doLogout()\"\n      (onLogin)=\"doLogin()\"\n      (onCreateAccount)=\"doCreateAccount()\"\n    ></storybook-header>\n    <section>\n      <h2>Pages in Storybook</h2>\n      <p>\n        We recommend building UIs with a\n        <a href=\"https://componentdriven.org\" target=\"_blank\" rel=\"noopener noreferrer\">\n          <strong>component-driven</strong>\n        </a>\n        process starting with atomic components and ending with pages.\n      </p>\n      <p>\n        Render pages with mock data. This makes it easy to build and review page states without\n        needing to navigate to them in your app. Here are some handy patterns for managing page data\n        in Storybook:\n      </p>\n      <ul>\n        <li>\n          Use a higher-level connected component. Storybook helps you compose such data from the\n          \"args\" of child component stories\n        </li>\n        <li>\n          Assemble data in the page component from your services. You can mock these services out\n          using Storybook.\n        </li>\n      </ul>\n      <p>\n        Get a guided tutorial on component-driven development at\n        <a href=\"https://storybook.js.org/tutorials/\" target=\"_blank\" rel=\"noopener noreferrer\">\n          Storybook tutorials\n        </a>\n        . Read more in the\n        <a href=\"https://storybook.js.org/docs\" target=\"_blank\" rel=\"noopener noreferrer\"> docs </a>\n        .\n      </p>\n      <div class=\"tip-wrapper\">\n        <span class=\"tip\">Tip</span> Adjust the width of the canvas with the\n        <svg width=\"10\" height=\"10\" viewBox=\"0 0 12 12\" xmlns=\"http://www.w3.org/2000/svg\">\n          <g fill=\"none\" fillRule=\"evenodd\">\n            <path\n              d=\"M1.5 5.2h4.8c.3 0 .5.2.5.4v5.1c-.1.2-.3.3-.4.3H1.4a.5.5 0 01-.5-.4V5.7c0-.3.2-.5.5-.5zm0-2.1h6.9c.3 0 .5.2.5.4v7a.5.5 0 01-1 0V4H1.5a.5.5 0 010-1zm0-2.1h9c.3 0 .5.2.5.4v9.1a.5.5 0 01-1 0V2H1.5a.5.5 0 010-1zm4.3 5.2H2V10h3.8V6.2z\"\n              id=\"a\"\n              fill=\"#999\"\n            />\n          </g>\n        </svg>\n        Viewports addon in the toolbar\n      </div>\n    </section>\n  </article>",
+            "templateUrl": [],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "user",
+                    "defaultValue": "null",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "User | null",
+                    "optional": false,
+                    "description": "",
+                    "line": 64
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "doCreateAccount",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 74,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "doLogin",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 70,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "doLogout",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 66,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\nimport { User } from './User';\n\n@Component({\n  selector: 'storybook-page',\n  template: `<article>\n    <storybook-header\n      [user]=\"user\"\n      (onLogout)=\"doLogout()\"\n      (onLogin)=\"doLogin()\"\n      (onCreateAccount)=\"doCreateAccount()\"\n    ></storybook-header>\n    <section>\n      <h2>Pages in Storybook</h2>\n      <p>\n        We recommend building UIs with a\n        <a href=\"https://componentdriven.org\" target=\"_blank\" rel=\"noopener noreferrer\">\n          <strong>component-driven</strong>\n        </a>\n        process starting with atomic components and ending with pages.\n      </p>\n      <p>\n        Render pages with mock data. This makes it easy to build and review page states without\n        needing to navigate to them in your app. Here are some handy patterns for managing page data\n        in Storybook:\n      </p>\n      <ul>\n        <li>\n          Use a higher-level connected component. Storybook helps you compose such data from the\n          \"args\" of child component stories\n        </li>\n        <li>\n          Assemble data in the page component from your services. You can mock these services out\n          using Storybook.\n        </li>\n      </ul>\n      <p>\n        Get a guided tutorial on component-driven development at\n        <a href=\"https://storybook.js.org/tutorials/\" target=\"_blank\" rel=\"noopener noreferrer\">\n          Storybook tutorials\n        </a>\n        . Read more in the\n        <a href=\"https://storybook.js.org/docs\" target=\"_blank\" rel=\"noopener noreferrer\"> docs </a>\n        .\n      </p>\n      <div class=\"tip-wrapper\">\n        <span class=\"tip\">Tip</span> Adjust the width of the canvas with the\n        <svg width=\"10\" height=\"10\" viewBox=\"0 0 12 12\" xmlns=\"http://www.w3.org/2000/svg\">\n          <g fill=\"none\" fillRule=\"evenodd\">\n            <path\n              d=\"M1.5 5.2h4.8c.3 0 .5.2.5.4v5.1c-.1.2-.3.3-.4.3H1.4a.5.5 0 01-.5-.4V5.7c0-.3.2-.5.5-.5zm0-2.1h6.9c.3 0 .5.2.5.4v7a.5.5 0 01-1 0V4H1.5a.5.5 0 010-1zm0-2.1h9c.3 0 .5.2.5.4v9.1a.5.5 0 01-1 0V2H1.5a.5.5 0 010-1zm4.3 5.2H2V10h3.8V6.2z\"\n              id=\"a\"\n              fill=\"#999\"\n            />\n          </g>\n        </svg>\n        Viewports addon in the toolbar\n      </div>\n    </section>\n  </article>`,\n  styleUrls: ['./page.css'],\n})\nexport default class PageComponent {\n  user: User | null = null;\n\n  doLogout() {\n    this.user = null;\n  }\n\n  doLogin() {\n    this.user = { name: 'Jane Doe' };\n  }\n\n  doCreateAccount() {\n    this.user = { name: 'Jane Doe' };\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "section {\n  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;\n  font-size: 14px;\n  line-height: 24px;\n  padding: 48px 20px;\n  margin: 0 auto;\n  max-width: 600px;\n  color: #333;\n}\n\nsection h2 {\n  font-weight: 900;\n  font-size: 32px;\n  line-height: 1;\n  margin: 0 0 4px;\n  display: inline-block;\n  vertical-align: top;\n}\n\nsection p {\n  margin: 1em 0;\n}\n\nsection a {\n  text-decoration: none;\n  color: #1ea7fd;\n}\n\nsection ul {\n  padding-left: 30px;\n  margin: 1em 0;\n}\n\nsection li {\n  margin-bottom: 8px;\n}\n\nsection .tip {\n  display: inline-block;\n  border-radius: 1em;\n  font-size: 11px;\n  line-height: 12px;\n  font-weight: 700;\n  background: #e7fdd8;\n  color: #66bf3c;\n  padding: 4px 12px;\n  margin-right: 10px;\n  vertical-align: top;\n}\n\nsection .tip-wrapper {\n  font-size: 13px;\n  line-height: 20px;\n  margin-top: 40px;\n  margin-bottom: 40px;\n}\n\nsection .tip-wrapper svg {\n  display: inline-block;\n  height: 12px;\n  width: 12px;\n  margin-right: 4px;\n  vertical-align: top;\n  margin-top: 3px;\n}\n\nsection .tip-wrapper svg path {\n  fill: #1ea7fd;\n}\n",
+                    "styleUrl": "./page.css"
+                }
+            ],
+            "stylesData": ""
+        },
+        {
+            "name": "RegisterComponent",
+            "id": "component-RegisterComponent-e0af51f5a24186a34ff2af455a0350141046c06c48338e2abd3a7ea6a2a5f6d4f1d26158681f4d5a6413c8eebacb05126b1385334a5f28e15d5ff1d836dfe5b0",
+            "file": "src/app/components/register/register.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-register",
+            "styleUrls": [
+                "./register.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./register.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "confirmPassword",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 29
+                },
+                {
+                    "name": "email",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 27
+                },
+                {
+                    "name": "isConfirmPasswordError",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "optional": false,
+                    "description": "",
+                    "line": 34
+                },
+                {
+                    "name": "isEmailError",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "optional": false,
+                    "description": "",
+                    "line": 32
+                },
+                {
+                    "name": "isError",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "optional": false,
+                    "description": "",
+                    "line": 31
+                },
+                {
+                    "name": "isPasswordError",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "optional": false,
+                    "description": "",
+                    "line": 33
+                },
+                {
+                    "name": "password",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 28
+                },
+                {
+                    "name": "registerForm",
+                    "defaultValue": "new FormGroup({\r\n    email: new FormControl('', [\r\n      Validators.required,\r\n      Validators.pattern(\"^[a-z0-9._%+-]+@[a-z0-9.-]+\\\\.[a-z]{2,4}$\")\r\n    ]),\r\n    password: new FormControl('', [\r\n      Validators.required,\r\n      Validators.pattern(\"^(?=.*[A-Z])(?=.*[!#@$%&])(?=.*[0-9])(?=.*[a-z]).{6,15}$\")\r\n    ]),\r\n    confirmPassword: new FormControl('', [\r\n      Validators.required,\r\n      Validators.pattern(\"^(?=.*[A-Z])(?=.*[!#@$%&])(?=.*[0-9])(?=.*[a-z]).{6,15}$\")\r\n    ])\r\n  })",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 39
+                },
+                {
+                    "name": "validEmail",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "any",
+                    "optional": false,
+                    "description": "",
+                    "line": 36
+                },
+                {
+                    "name": "validPassword",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "any",
+                    "optional": false,
+                    "description": "",
+                    "line": 37
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "errorHandler",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 62,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "haveLowercase",
+                    "args": [
+                        {
+                            "name": "param",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 93,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "param",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "haveNumber",
+                    "args": [
+                        {
+                            "name": "param",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 103,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "param",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "haveSymbols",
+                    "args": [
+                        {
+                            "name": "param",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 108,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "param",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "haveUppercase",
+                    "args": [
+                        {
+                            "name": "param",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 98,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "param",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 59,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "register",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 113,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "validate",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 82,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\nimport { FormControl, FormGroup, Validators } from '@angular/forms';\r\nimport { Router } from '@angular/router';\r\nimport { AuthService } from 'src/app/shared/services/auth.service';\r\nimport { animate, state, style, transition, trigger } from '@angular/animations';\r\n\r\n@Component({\r\n  selector: 'app-register',\r\n  templateUrl: './register.component.html',\r\n  styleUrls: ['./register.component.scss'],\r\n  animations: [\r\n    trigger('warning', [\r\n      state('normal', style({\r\n        borderColor: '#FFF'\r\n      })),\r\n      state('yellow', style({\r\n        borderColor: '#E9B425'\r\n      })),\r\n      transition('normal <=> yellow', [\r\n        animate('0.5s')\r\n      ])\r\n    ])\r\n  ]\r\n})\r\nexport class RegisterComponent implements OnInit {\r\n\r\n  email: string = '';\r\n  password: string = '';\r\n  confirmPassword: string = '';\r\n\r\n  isError: boolean = false;\r\n  isEmailError: boolean = false;\r\n  isPasswordError: boolean = false;\r\n  isConfirmPasswordError: boolean = false;\r\n\r\n  validEmail: any;\r\n  validPassword: any;\r\n\r\n  registerForm = new FormGroup({\r\n    email: new FormControl('', [\r\n      Validators.required,\r\n      Validators.pattern(\"^[a-z0-9._%+-]+@[a-z0-9.-]+\\\\.[a-z]{2,4}$\")\r\n    ]),\r\n    password: new FormControl('', [\r\n      Validators.required,\r\n      Validators.pattern(\"^(?=.*[A-Z])(?=.*[!#@$%&])(?=.*[0-9])(?=.*[a-z]).{6,15}$\")\r\n    ]),\r\n    confirmPassword: new FormControl('', [\r\n      Validators.required,\r\n      Validators.pattern(\"^(?=.*[A-Z])(?=.*[!#@$%&])(?=.*[0-9])(?=.*[a-z]).{6,15}$\")\r\n    ])\r\n  })\r\n\r\n  constructor(\r\n    private authService: AuthService,\r\n    private router: Router\r\n  ) {}\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n  errorHandler() {\r\n    if(this.registerForm.controls['email'].errors) {\r\n      this.isEmailError = true;\r\n    } else {\r\n      this.isEmailError = false;\r\n    }\r\n\r\n    if(this.registerForm.controls['password'].errors) {\r\n      this.isPasswordError = true;\r\n    } else {\r\n      this.isPasswordError = false;\r\n    }\r\n\r\n    if(this.registerForm.controls['confirmPassword'].errors) {\r\n      this.isConfirmPasswordError = true;\r\n    } else {\r\n      this.isConfirmPasswordError = false;\r\n    }\r\n  }\r\n\r\n  validate() {\r\n    this.validEmail = this.registerForm.controls['email'].errors?.['pattern'] && this.registerForm.controls['email'].errors?.['required'];\r\n    this.validPassword = this.registerForm.controls['password'].errors?.['pattern'] && \r\n      this.registerForm.controls['password'].errors?.['required'] &&\r\n      this.registerForm.controls['confirmPassword'] == this.registerForm.controls['password']\r\n    \r\n    if(this.validEmail == true && this.validPassword == true) {\r\n      this.router.navigate(['/login']);\r\n    }\r\n  }\r\n\r\n  haveLowercase(param: string) {\r\n    let regEx = /[a-z]/;\r\n    return regEx.test(param);\r\n  }\r\n\r\n  haveUppercase(param: string) {\r\n    let regEx = /[A-Z]/;\r\n    return regEx.test(param);\r\n  }\r\n\r\n  haveNumber(param: string) {\r\n    let regEx = /[0-9]/;\r\n    return regEx.test(param);\r\n  }\r\n\r\n  haveSymbols(param: string) {\r\n    let regEx = /[$&+,:;=?@#|'<>.^*()%!-]/;\r\n    return regEx.test(param);\r\n  }\r\n\r\n  register() {\r\n    if(!this.registerForm.valid && !this.registerForm.dirty) {\r\n      this.isError = true;\r\n    } else {\r\n      this.authService.register(this.email, this.password);\r\n    \r\n      this.email = '';\r\n      this.password = '';\r\n    }\r\n  }\r\n\r\n  get Email() {\r\n    return this.registerForm.get('email')\r\n  }\r\n\r\n  get Password() {\r\n    return this.registerForm.get('password')\r\n  }\r\n\r\n  get ConfirmPassword() {\r\n    return this.registerForm.get('confirmPassword')\r\n  }\r\n\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@import '../../../styles.scss';\r\n\r\n\r\n.containerr {\r\n    background: linear-gradient(180deg, #33383D 0%, #1C1D20 100%);\r\n    box-shadow: 4px 4px 70px rgba(0, 0, 0, 0.25);\r\n    height: auto;\r\n    display: flex;\r\n    max-width: 100%;\r\n    @include responsive(mobileS) {\r\n        min-height: 100vh;\r\n    }\r\n    @include responsive(mobileL) {\r\n        min-height: 100vh;\r\n    }\r\n    @include responsive(tablet) {\r\n        min-height: 100vh;\r\n    }\r\n    .login-container {\r\n        display: flex;\r\n        justify-content: center;\r\n        align-items: center;\r\n        flex-direction: column;\r\n        width: 50%;\r\n        @include responsive(mobileS) {\r\n            width: 100%;\r\n        }\r\n        @include responsive(mobileL) {\r\n            width: 100%;\r\n        }\r\n        @include responsive(tablet) {\r\n            width: 100%;\r\n        }\r\n        .login-info {\r\n            @include responsive(mobileS) {\r\n                margin: 15px auto 0 auto;\r\n            }\r\n            @include responsive(mobileL) {\r\n                margin: 55px auto 0 auto;\r\n            }\r\n            @include responsive(tablet) {\r\n                position: relative;\r\n                top: 140px;\r\n                left: 20px;\r\n            }\r\n            margin-right: 6.5rem;\r\n            h1 {\r\n                font-size: 60px;\r\n                color: $text-color;\r\n                margin-top: 3rem;\r\n                @include responsive(mobileS) {\r\n                    font-size: 40px;\r\n                    margin-top: 5rem;\r\n                }\r\n                @include responsive(tablet) {\r\n                    margin: 0;\r\n                }\r\n            }\r\n            p {\r\n                font-size: 16px;\r\n                color: $text-color;\r\n                margin-top: 27px;\r\n                @include responsive(mobileS) {\r\n                    font-size: 14px;\r\n                }\r\n            }\r\n        }\r\n        .login-form {\r\n            @include responsive(mobileS) {\r\n                display: flex;\r\n                flex-direction: column;\r\n                align-items: center;\r\n            }\r\n            @include responsive(mobileL) {\r\n                display: flex;\r\n                flex-direction: column;\r\n                align-items: center;\r\n            }\r\n            @include responsive(tablet) {\r\n                display: flex;\r\n                flex-direction: column;\r\n                align-items: center;\r\n            }\r\n            .input {\r\n                display: flex;\r\n                position: relative;\r\n                @include responsive(mobileS) {\r\n                    width: 260px;\r\n                }\r\n                input {\r\n                    display: flex;\r\n                    flex-direction: column;\r\n                    width: 380px;\r\n                    height: 60px;\r\n                    border-radius: 50px;\r\n                    background-color: #26292C;\r\n                    border: 1px solid $white;\r\n                    padding: 20px;\r\n                    color: $text-color;\r\n                    &::placeholder {\r\n                        color: $text-color;\r\n                    }\r\n                    &:active {\r\n                        outline: none;\r\n                    }\r\n                    @include responsive(mobileS) {\r\n                        width: 290px;\r\n                    }\r\n                    @include responsive(mobileL) {\r\n                        width: 320px;\r\n                    }\r\n                }\r\n                img {\r\n                    position: absolute;\r\n                    right: -40px;\r\n                    top: 30%;\r\n                    @include responsive(mobileS) {\r\n                        right: 10px;\r\n                        width: 20px;\r\n                    }\r\n                    @include responsive(mobileL) {\r\n                        right: 20px;\r\n                        width: 20px;\r\n                    }\r\n                }\r\n            }\r\n            .errorContainer {\r\n                margin-left: 20px;\r\n                max-width: 220px;\r\n                text-align: justify;\r\n                margin-top: 10px;\r\n                .error {\r\n                    font-size: 16px;\r\n                    font-weight: 700;\r\n                    text-align: center;\r\n                    color: $error-color;\r\n                }\r\n            }\r\n            .passwordErrorContainer {\r\n                margin-left: 20px;\r\n                max-width: 320px;\r\n                margin-top: 10px;\r\n                @include responsive(mobileS) {\r\n                    max-width: 220px;\r\n                }\r\n                .error {\r\n                    font-size: 16px;\r\n                    font-weight: 700;\r\n                    color: $error-color;\r\n                }\r\n            }\r\n            h2 {\r\n                @include responsive(mobileS) {\r\n                    margin-top: 50px;\r\n                    position: relative;\r\n                    right: 58px;\r\n                }\r\n                @include responsive(mobileL) {\r\n                    margin-top: 50px;\r\n                    position: relative;\r\n                    right: 74px;\r\n                }\r\n                @include responsive(tablet) {\r\n                    margin-top: 180px;\r\n                    position: relative;\r\n                    right: 105px;\r\n                }\r\n                margin-top: 97px;\r\n                font-weight: 400;\r\n                font-size: 30px;\r\n                color: $text-color;\r\n                margin-bottom: 32px;\r\n            }\r\n            button {\r\n                width: 380px;\r\n                height: 67px;\r\n                text-align: center;\r\n                color: $white;\r\n                background: linear-gradient(90deg, #FF2D04 0%, #C13216 100%);\r\n                box-shadow: inset 5px 5px 15px rgba(0, 0, 0, 0.15);\r\n                border: 2px solid #FF2D04;\r\n                border-radius: 50px;\r\n                margin-top: 115px;\r\n                margin-bottom: 25px;\r\n                font-weight: bold;\r\n                @include responsive(mobileS) {\r\n                    width: 260px;\r\n                    height: 60px;\r\n                    margin-bottom: 20px;\r\n                    margin-top: 50px;\r\n                }\r\n                @include responsive(mobileL) {\r\n                    width: 320px;\r\n                    height: 65px;\r\n                    margin-bottom: 20px;\r\n                }\r\n                @include responsive(tablet) {\r\n                    margin-bottom: 20px;\r\n                    margin-top: 50px;\r\n                    height: 65px;\r\n                }\r\n            }\r\n            #link {\r\n                display: flex;\r\n                justify-content: center;\r\n                margin-bottom: 30px;\r\n                text-decoration: none;\r\n                color: $text-color;\r\n            }\r\n        }\r\n    }\r\n    .logo-container {\r\n        position: relative;\r\n        @include responsive(mobileS) {\r\n            position: absolute;\r\n        }\r\n        @include responsive(mobileL) {\r\n            position: absolute;\r\n        }\r\n        @include responsive(tablet) {\r\n            position: absolute;\r\n        }\r\n        width: 50%;\r\n        #bg {\r\n            width: 100%;\r\n            height: 100%;\r\n            object-fit: fill;\r\n            @include responsive(mobileS) {\r\n                display: none;\r\n            }\r\n            @include responsive(mobileL) {\r\n                display: none;\r\n            }\r\n            @include responsive(tablet) {\r\n                display: none;\r\n            }\r\n            \r\n        }\r\n        #logo {\r\n            position: absolute;\r\n            left: 35%;\r\n            top: 2.5%;\r\n            @include responsive(mobileS) {\r\n                position: absolute;\r\n                width: 210px;\r\n                top: 20px;\r\n                left: 60px;\r\n                margin-bottom: 20px;\r\n            }\r\n            @include responsive(mobileL) {\r\n                position: absolute;\r\n                width: 250px;\r\n                top: 20px;\r\n                left: 75px;\r\n                margin-bottom: 20px;\r\n            }\r\n            @include responsive(tablet) {\r\n                position: absolute;\r\n                width: 250px;\r\n                top: 20px;\r\n                left: 245px;\r\n                margin-bottom: 20px;\r\n            }\r\n        }\r\n    }\r\n}\r\n\r\n.errorMessage {\r\n    display: flex;\r\n    font-weight: 700;\r\n    text-align: center;\r\n    font-size: 16px;\r\n    color: $error-color;\r\n    padding-left: 70px;\r\n    @include responsive(mobileS) {\r\n        padding-left: 15px;\r\n        align-items: center;\r\n    }\r\n    @include responsive(mobileL) {\r\n        align-items: center;\r\n        padding-right: 40px;\r\n    }\r\n    @include responsive(tablet) {\r\n        align-items: center;\r\n        padding-right: 50px;\r\n    }\r\n}\r\n\r\n.in-input {\r\n    position: absolute;\r\n    transform: translateX(-63px);\r\n    transition: .5s;\r\n    @include responsive(mobileS) {\r\n      transform: translateX(0px);\r\n    }\r\n    @include responsive(mobileL) {\r\n        transform: translateX(0px);\r\n    }\r\n}\r\n\r\n.out-input {\r\n    position: absolute;\r\n    transition: 0.5s;\r\n    right: -40px;\r\n    top: 15%;\r\n    @include responsive(mobileS) {\r\n        position: absolute;\r\n        right: 10px;\r\n    }\r\n}\r\n\r\n.checked {\r\n    color: green !important;\r\n}\r\n\r\n.inputError {\r\n    border-color: $error-color !important;\r\n}",
+                    "styleUrl": "./register.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "authService",
+                        "type": "AuthService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 52,
+                "jsdoctags": [
+                    {
+                        "name": "authService",
+                        "type": "AuthService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "accessors": {
+                "Email": {
+                    "name": "Email",
+                    "getSignature": {
+                        "name": "Email",
+                        "type": "",
+                        "returnType": "",
+                        "line": 124
+                    }
+                },
+                "Password": {
+                    "name": "Password",
+                    "getSignature": {
+                        "name": "Password",
+                        "type": "",
+                        "returnType": "",
+                        "line": 128
+                    }
+                },
+                "ConfirmPassword": {
+                    "name": "ConfirmPassword",
+                    "getSignature": {
+                        "name": "ConfirmPassword",
+                        "type": "",
+                        "returnType": "",
+                        "line": 132
+                    }
+                }
+            },
+            "templateData": "<div class=\"containerr\">\r\n    <div class=\"login-container\">\r\n        <div class=\"login-info mark-font\">\r\n            <h1>Olá,</h1>\r\n            <p>Para continuar navegando de forma <br> segura, efetue o cadastro na rede.</p>\r\n        </div>\r\n        <div class=\"login-form mark-font\">\r\n            <h2>Registrar</h2>\r\n            <form\r\n                class=\"login-form\"\r\n                [formGroup]=\"registerForm\"\r\n                (change)=\"errorHandler()\"\r\n                (ngSubmit)=\"validate()\">\r\n                <div style=\"margin-bottom: 30px;\">\r\n                    <div class=\"input\">\r\n                        <input\r\n                            id=\"email\"\r\n                            type=\"email\" \r\n                            formControlName=\"email\"\r\n                            [@warning]=\"isEmailError ? 'yellow' : 'normal'\"\r\n                            [(ngModel)]=\"email\"\r\n                            placeholder=\"Usuário\"\r\n                        >\r\n                        <img \r\n                            [class.out-input]=\"email == ''\" [class.in-input] =\"email != '' && email != ' '\"\r\n                            src=\"../../../assets/icon-user.svg\" \r\n                            id=\"user-icon-default\"\r\n                        >\r\n                    </div>\r\n                    <div *ngIf=\"(Email?.invalid && Email?.touched) || Email?.dirty\" class=\"errorContainer\">\r\n                        <small \r\n                            *ngIf=\"registerForm.controls['email'].errors?.['required']\"\r\n                            class=\"error\" \r\n                        >\r\n                            Insira um email\r\n                        </small>\r\n                        <small \r\n                            *ngIf=\"registerForm.controls['email'].errors?.['pattern']\"\r\n                            class=\"error\"\r\n                        >\r\n                            Insira um email valido\r\n                        </small>\r\n                    </div>\r\n                </div>\r\n                <div style=\"margin-bottom: 30px;\">\r\n                    <div class=\"input\">\r\n                        <input\r\n                            id=\"password\" \r\n                            type=\"password\" \r\n                            formControlName=\"password\"\r\n                            [(ngModel)]=\"password\"\r\n                            [@warning]=\"isPasswordError ? 'yellow' : 'normal'\"\r\n                            placeholder=\"Senha\"\r\n                        >\r\n                        <img \r\n                            [class.out-input]=\"password == ''\" [class.in-input] =\"password != '' && password != ' '\"\r\n                            src=\"../../../assets/icon-password.svg\" \r\n                            id=\"password-icon-default\" \r\n                        >\r\n                    </div>\r\n                    <div *ngIf=\"(Password?.invalid && Password?.touched) || Password?.dirty\" class=\"passwordErrorContainer\">\r\n                        <small \r\n                            *ngIf=\"registerForm.controls['password'].errors?.['required']\" \r\n                            class=\"error\"\r\n                        >\r\n                            Insira uma senha\r\n                        </small>\r\n                        <small \r\n                            *ngIf=\"registerForm.controls['password'].errors?.['pattern']\"\r\n                            class=\"error\"\r\n                            id=\"passwordError\"\r\n                        >\r\n                            Sua senha deve conter: \r\n                            <ul>\r\n                                <li \r\n                                    class=\"error\"\r\n                                    [class.checked]=\"password.length >= 6\">\r\n                                    6 caracteres\r\n                                </li>\r\n                                <li \r\n                                    class=\"error\" \r\n                                    [class.checked]=\"haveUppercase(password)\">\r\n                                    Uma letra maiuscula\r\n                                </li>\r\n                                <li \r\n                                    class=\"error\"\r\n                                    [class.checked]=\"haveLowercase(password)\">\r\n                                    Uma letra minuscula\r\n                                </li>\r\n                                <li \r\n                                    class=\"error\"\r\n                                    [class.checked]=\"haveNumber(password)\">\r\n                                    Um numero\r\n                                </li>\r\n                                <li \r\n                                    class=\"error\"\r\n                                    [class.checked]=\"haveSymbols(password)\">\r\n                                    Um caracter especial\r\n                                </li>\r\n                            </ul>\r\n                        </small>\r\n                    </div>\r\n                </div>\r\n                <div style=\"margin-bottom: 30px;\">\r\n                    <div class=\"input\">\r\n                        <input\r\n                            id=\"confirmPassword\" \r\n                            type=\"password\" \r\n                            formControlName=\"confirmPassword\"\r\n                            [(ngModel)]=\"confirmPassword\"\r\n                            [@warning]=\"isConfirmPasswordError ? 'yellow' : 'normal'\"\r\n                            placeholder=\"Confirme sua senha\"\r\n                        >\r\n                        <img \r\n                            [class.out-input]=\"password == ''\" [class.in-input] =\"password != '' && password != ' '\"\r\n                            src=\"../../../assets/icon-password.svg\" \r\n                            id=\"password-icon-default\" \r\n                        >\r\n                    </div>\r\n                    <div *ngIf=\"(ConfirmPassword?.invalid && ConfirmPassword?.touched) || ConfirmPassword?.dirty\" class=\"errorContainer\">\r\n                        <small \r\n                            *ngIf=\"registerForm.controls['confirmPassword'].errors?.['required']\" \r\n                            class=\"error\"\r\n                        >\r\n                            Confirme sua senha <br>\r\n                        </small>\r\n                        <small \r\n                            *ngIf=\"!(registerForm.controls['confirmPassword'].value == registerForm.controls['password'].value)\"\r\n                            class=\"error\"\r\n                        >\r\n                            As senhas devem ser iguais\r\n                        </small>\r\n                    </div>\r\n                </div>\r\n                <button \r\n                    type=\"submit\" \r\n                    (click)=\"register()\"\r\n                    [disabled]=\"!registerForm.valid\">\r\n                    Continuar\r\n                </button>\r\n            </form>\r\n            <a id=\"link\" href=\"/login\">Ja possui uma conta? Faca login</a>\r\n        </div>\r\n    </div>\r\n    <div class=\"logo-container\">\r\n        <img src=\"../../../assets/compass02.png\" id=\"logo\" alt=\"Logo\">\r\n        <img src=\"../../../assets/compass01.png\" id=\"bg\" alt=\"Notebook\">\r\n    </div>\r\n</div>"
+        }
+    ],
+    "modules": [
+        {
+            "name": "AppModule",
+            "id": "module-AppModule-6e4b3fcd174f76903d9429e0ef91ad92c0f75fcd1f4065ebd723ce4e508400aa36286c7bce1444cbed61e4d8f603fe71cfd0254eea78e2f378786d50dfecafca",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/app.module.ts",
+            "methods": [],
+            "sourceCode": "import { AuthService } from 'src/app/shared/services/auth.service';\r\nimport { NgModule } from '@angular/core';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { AppRoutingModule } from './app-routing.module';\r\nimport { AppComponent } from './app.component';\r\nimport { LoginComponent } from './components/login/login.component';\r\nimport { HomeComponent } from './components/home/home.component';\r\nimport { RegisterComponent } from './components/register/register.component';\r\nimport { AngularFireModule } from '@angular/fire/compat';\r\nimport { environment } from 'src/environments/environment';\r\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms';\r\nimport { WeatherService } from './shared/services/weather.service';\r\nimport { HttpClientModule } from '@angular/common/http';\r\nimport { registerLocaleData } from '@angular/common';\r\nimport localePt from '@angular/common/locales/pt';\r\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\r\nregisterLocaleData(localePt)\r\n\r\n@NgModule({\r\n  declarations: [\r\n    AppComponent,\r\n    LoginComponent,\r\n    HomeComponent,\r\n    RegisterComponent\r\n  ],\r\n  imports: [\r\n    BrowserModule,\r\n    AppRoutingModule,\r\n    AngularFireModule.initializeApp(environment.firebaseConfig),\r\n    FormsModule,\r\n    HttpClientModule,\r\n    BrowserAnimationsModule,\r\n    FormsModule,\r\n    ReactiveFormsModule\r\n  ],\r\n  providers: [WeatherService, AuthService],\r\n  bootstrap: [AppComponent]\r\n})\r\nexport class AppModule { }\r\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": [
+                        {
+                            "name": "AuthService"
+                        },
+                        {
+                            "name": "WeatherService"
+                        }
+                    ]
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "AppComponent"
+                        },
+                        {
+                            "name": "HomeComponent"
+                        },
+                        {
+                            "name": "LoginComponent"
+                        },
+                        {
+                            "name": "RegisterComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": [
+                        {
+                            "name": "AppRoutingModule"
+                        }
+                    ]
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": [
+                        {
+                            "name": "AppComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "AppRoutingModule",
+            "id": "module-AppRoutingModule-677c97096f8735797df510a3e58c93a7c79feec21f52819d7cef8a97fb4ac7a355381b175d91004cff30b700c778b477f57a76ac412e033e3840d21a70f7bb59",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/app-routing.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { RouterModule, Routes } from '@angular/router';\r\nimport { AuthGuard } from './auth/auth.guard';\r\nimport { HomeComponent } from './components/home/home.component';\r\nimport { LoginComponent } from './components/login/login.component';\r\nimport { RegisterComponent } from './components/register/register.component';\r\n\r\nconst routes: Routes = [\r\n  { path: '', redirectTo: 'login', pathMatch: 'full' },\r\n  { path: 'login', component: LoginComponent },\r\n  { path: 'register', component: RegisterComponent },\r\n  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] }\r\n];\r\n\r\n@NgModule({\r\n  imports: [RouterModule.forRoot(routes)],\r\n  exports: [RouterModule]\r\n})\r\nexport class AppRoutingModule { }\r\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": []
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        }
+    ],
+    "miscellaneous": {
+        "variables": [
+            {
+                "name": "context",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/test.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "require.context('./', true, /\\.spec\\.ts$/)"
+            },
+            {
+                "name": "environment",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/environments/environment.prod.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\r\n  production: true\r\n}"
+            },
+            {
+                "name": "environment",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/environments/environment.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\r\n  production: false,\r\n  firebaseConfig: {\r\n    apiKey: \"AIzaSyDzKKnmpOVOVj7ZNqNXVm5JqoMZ44KkHkM\",\r\n    authDomain: \"compass-01.firebaseapp.com\",\r\n    projectId: \"compass-01\",\r\n    storageBucket: \"compass-01.appspot.com\",\r\n    messagingSenderId: \"114774932441\",\r\n    appId: \"1:114774932441:web:58c4201c74d76138a0f7c8\",\r\n    measurementId: \"G-8JEWB4P7SM\"\r\n  },\r\n  apiUrl: 'https://api.openweathermap.org/data/2.5/weather/',\r\n  APPID: 'bfa29a247389ee6ae90007c90a10c40b'\r\n}"
+            },
+            {
+                "name": "Large",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "LoggedIn",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Header.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "LoggedIn",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Page.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "LoggedOut",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Header.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "LoggedOut",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Page.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Primary",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "require",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/test.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "literal type"
+            },
+            {
+                "name": "Secondary",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Small",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<Button>",
+                "defaultValue": "(args: Button) => ({\n  props: args,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Header.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<Header>",
+                "defaultValue": "(args: Header) => ({\n  props: args,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Page.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<Page>",
+                "defaultValue": "(args: Page) => ({\n  props: args,\n})"
+            }
+        ],
+        "functions": [],
+        "typealiases": [],
+        "enumerations": [],
+        "groupedVariables": {
+            "src/test.ts": [
+                {
+                    "name": "context",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/test.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "require.context('./', true, /\\.spec\\.ts$/)"
+                },
+                {
+                    "name": "require",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/test.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "literal type"
+                }
+            ],
+            "src/environments/environment.prod.ts": [
+                {
+                    "name": "environment",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/environments/environment.prod.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\r\n  production: true\r\n}"
+                }
+            ],
+            "src/environments/environment.ts": [
+                {
+                    "name": "environment",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/environments/environment.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\r\n  production: false,\r\n  firebaseConfig: {\r\n    apiKey: \"AIzaSyDzKKnmpOVOVj7ZNqNXVm5JqoMZ44KkHkM\",\r\n    authDomain: \"compass-01.firebaseapp.com\",\r\n    projectId: \"compass-01\",\r\n    storageBucket: \"compass-01.appspot.com\",\r\n    messagingSenderId: \"114774932441\",\r\n    appId: \"1:114774932441:web:58c4201c74d76138a0f7c8\",\r\n    measurementId: \"G-8JEWB4P7SM\"\r\n  },\r\n  apiUrl: 'https://api.openweathermap.org/data/2.5/weather/',\r\n  APPID: 'bfa29a247389ee6ae90007c90a10c40b'\r\n}"
+                }
+            ],
+            "src/stories/Button.stories.ts": [
+                {
+                    "name": "Large",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Primary",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Secondary",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Small",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<Button>",
+                    "defaultValue": "(args: Button) => ({\n  props: args,\n})"
+                }
+            ],
+            "src/stories/Header.stories.ts": [
+                {
+                    "name": "LoggedIn",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Header.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "LoggedOut",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Header.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Header.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<Header>",
+                    "defaultValue": "(args: Header) => ({\n  props: args,\n})"
+                }
+            ],
+            "src/stories/Page.stories.ts": [
+                {
+                    "name": "LoggedIn",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Page.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "LoggedOut",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Page.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Page.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<Page>",
+                    "defaultValue": "(args: Page) => ({\n  props: args,\n})"
+                }
+            ]
+        },
+        "groupedFunctions": {},
+        "groupedEnumerations": {},
+        "groupedTypeAliases": {}
+    },
+    "routes": {
+        "name": "<root>",
+        "kind": "module",
+        "className": "AppModule",
+        "children": [
+            {
+                "name": "routes",
+                "filename": "src/app/app-routing.module.ts",
+                "module": "AppRoutingModule",
+                "children": [
+                    {
+                        "path": "",
+                        "redirectTo": "login",
+                        "pathMatch": "full"
+                    },
+                    {
+                        "path": "login",
+                        "component": "LoginComponent"
+                    },
+                    {
+                        "path": "register",
+                        "component": "RegisterComponent"
+                    },
+                    {
+                        "path": "home",
+                        "component": "HomeComponent",
+                        "canActivate": [
+                            "AuthGuard"
+                        ]
+                    }
+                ],
+                "kind": "module"
+            }
+        ]
+    },
+    "coverage": {
+        "count": 3,
+        "status": "low",
+        "files": [
+            {
+                "filePath": "src/app/app.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "AppComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/auth/auth.guard.ts",
+                "type": "guard",
+                "linktype": "guard",
+                "name": "AuthGuard",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/home/home.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "HomeComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/14",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/login/login.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "LoginComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/11",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/register/register.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "RegisterComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/20",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/services/auth.service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "AuthService",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/services/weather.service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "WeatherService",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/environments/environment.prod.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "environment",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/environments/environment.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "environment",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Large",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Primary",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Secondary",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Small",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Header.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "LoggedIn",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Header.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "LoggedOut",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Header.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Page.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "LoggedIn",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Page.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "LoggedOut",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Page.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/User.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "User",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/button.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ButtonComponent",
+                "coveragePercent": 83,
+                "coverageCount": "5/6",
+                "status": "very-good"
+            },
+            {
+                "filePath": "src/stories/header.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "HeaderComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/page.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "PageComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/test.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "context",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/test.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "require",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            }
+        ]
+    }
+}
