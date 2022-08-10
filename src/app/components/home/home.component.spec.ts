@@ -36,10 +36,6 @@ describe('HomeComponent', () => {
     expect(component.lat).toBe(0);
   });
 
-  it(`lat has number type`, () => {
-    expect(typeof(component.lat)).toBe('number');
-  });
-
   it(`lon has default value`, () => {
     expect(component.lon).toBe(0);
   });
@@ -81,10 +77,8 @@ describe('HomeComponent', () => {
         WeatherService
       );
       spyOn(weatherServiceStub, 'getWeatherData').and.callThrough();
-      spyOn(component, 'getUserPosition').and.callThrough();
       component.getUserLocation();
       expect(weatherServiceStub.getWeatherData).toHaveBeenCalled();
-      expect(component.getUserPosition).toHaveBeenCalled();
     });
   });
 });

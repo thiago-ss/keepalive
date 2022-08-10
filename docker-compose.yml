@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  keepalive:
+    image: keepalive
+    build: .
+    ports:
+      - 8081:80
