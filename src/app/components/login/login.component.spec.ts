@@ -30,28 +30,19 @@ describe('LoginComponent', () => {
   });
 
   it(`isMoved should has the default value`, () => {
-    expect(component.isMoved).toEqual(false);
+    expect(component.isMoved).toBe(false);
   });
 
   it(`isEmailError should has the default value`, () => {
-    expect(component.isEmailError).toEqual(false);
+    expect(component.isEmailError).toBe(false);
   });
 
   it(`isPasswordError should has the default value`, () => {
-    expect(component.isPasswordError).toEqual(false);
+    expect(component.isPasswordError).toBe(false);
   });
 
   it(`isLoggedIn should has the default value`, () => {
-    expect(component.isLoggedIn).toEqual(true);
-  });
-
-  describe('validate method', () => {
-    it('should make the expected calls', () => {
-      const routerStub: Router = fixture.debugElement.injector.get(Router);
-      spyOn(routerStub, 'navigate').and.callThrough();
-      component.validate();
-      expect(routerStub.navigate).toHaveBeenCalled();
-    });
+    expect(component.isLoggedIn).toBe(true);
   });
 
   describe('login method', () => {
@@ -59,10 +50,9 @@ describe('LoginComponent', () => {
       const authServiceStub: AuthService = fixture.debugElement.injector.get(
         AuthService
       );
-      let mySpy = spyOn(authServiceStub, 'login');
-      expect(mySpy).toHaveBeenCalled();
+      spyOn(authServiceStub, 'login').and.callThrough();
       component.login();
-      // expect(authServiceStub.login).toHaveBeenCalled();
+      expect(authServiceStub.login).toHaveBeenCalled();
     });
   });
 });

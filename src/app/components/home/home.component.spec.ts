@@ -33,43 +33,45 @@ describe('HomeComponent', () => {
   });
 
   it(`lat has default value`, () => {
-    expect(component.lat).toEqual(0);
+    expect(component.lat).toBe(0);
+  });
+
+  it(`lat has number type`, () => {
+    expect(typeof(component.lat)).toBe('number');
   });
 
   it(`lon has default value`, () => {
-    expect(component.lon).toEqual(0);
+    expect(component.lon).toBe(0);
   });
 
-  it(`data has default value`, () => {
-    expect(component.data).toEqual(10);
+  it(`time has default value`, () => {
+    expect(component.time).toBe(60);
+  });
+
+  describe('refresh', () => {
+    it('should start the timer to refresh the page when its over', async () => {
+      component.refresh(60);
+      expect(component.countdown).toBeTruthy();
+    });
+    expect(component.refresh).toHaveBeenCalled();
   });
 
   describe('ngOnInit', () => {
-    it('makes expected calls', () => {
-      const authServiceStub: AuthService = fixture.debugElement.injector.get(
-        AuthService
-      );
+    it('should call #getUserLocation', () => {
       spyOn(component, 'getUserLocation').and.callThrough();
-      spyOn(authServiceStub, 'logout').and.callThrough();
-      setTimeout(() => {
-        component.ngOnInit();
-        expect(component.getUserLocation).toHaveBeenCalled();
-        expect(authServiceStub.logout).toHaveBeenCalled();
-      }, 10000)
+      component.ngOnInit();
+      expect(component.getUserLocation).toHaveBeenCalled();
     });
   });
 
   describe('logout', () => {
-    it('makes expected calls', () => {
+    it('should make the expected calls', () => {
       const authServiceStub: AuthService = fixture.debugElement.injector.get(
         AuthService
       );
-      const routerStub: Router = fixture.debugElement.injector.get(Router);
       spyOn(authServiceStub, 'logout').and.callThrough();
-      spyOn(routerStub, 'navigate').and.callThrough();
       component.logout();
       expect(authServiceStub.logout).toHaveBeenCalled();
-      expect(routerStub.navigate).toHaveBeenCalled();
     });
   });
 
@@ -79,8 +81,10 @@ describe('HomeComponent', () => {
         WeatherService
       );
       spyOn(weatherServiceStub, 'getWeatherData').and.callThrough();
+      spyOn(component, 'getUserPosition').and.callThrough();
       component.getUserLocation();
       expect(weatherServiceStub.getWeatherData).toHaveBeenCalled();
+      expect(component.getUserPosition).toHaveBeenCalled();
     });
   });
 });

@@ -29,8 +29,6 @@ export class LoginComponent {
   isMoved: boolean = false;
   isEmailError: boolean = false;
   isPasswordError: boolean = false;
-  validEmail: any;
-  validPassword: any;
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required])
@@ -53,14 +51,6 @@ export class LoginComponent {
       this.isPasswordError = true;
     } else {
       this.isPasswordError = false;
-    }
-  }
-
-  validate() {
-    this.validEmail = this.loginForm.controls['email'].errors;
-    this.validPassword = this.loginForm.controls['password'].errors;
-    if(!this.validEmail && !this.validPassword) {
-      this.router.navigate(['/home'])
     }
   }
 
