@@ -22,15 +22,13 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
     ])
   ]
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
   email: string = '';
   password: string = '';
   isMoved: boolean = false;
   isEmailError: boolean = false;
   isPasswordError: boolean = false;
-  validEmail: any;
-  validPassword: any;
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required])
@@ -42,9 +40,6 @@ export class LoginComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit(): void {
-  }
-  
   errorHandler() {
     if(this.loginForm.controls['email'].errors) {
       this.isEmailError = true;
@@ -56,14 +51,6 @@ export class LoginComponent implements OnInit {
       this.isPasswordError = true;
     } else {
       this.isPasswordError = false;
-    }
-  }
-
-  validate() {
-    this.validEmail = this.loginForm.controls['email'].errors;
-    this.validPassword = this.loginForm.controls['password'].errors;
-    if(!this.validEmail && !this.validPassword) {
-      this.router.navigate(['/home'])
     }
   }
 
@@ -81,7 +68,7 @@ export class LoginComponent implements OnInit {
     }
 
     this.isLoggedIn = this.authService.login(this.email, this.password);
-    
+
     this.email = '';
     this.password = '';
   }

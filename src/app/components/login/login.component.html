@@ -10,41 +10,41 @@
                 class="login-form"
                 [formGroup]="loginForm"
                 (change)="errorHandler()"
-                (ngSubmit)="validate()"
+
             >
                 <div class="input" style="margin-bottom: 30px;">
                     <input
                         id="email"
-                        type="email" 
+                        type="email"
                         formControlName="email"
                         [@warning]="isEmailError ? 'yellow' : 'normal'"
                         [(ngModel)]="email"
                         placeholder="Usuário"
                     >
-                    <img 
+                    <img
                         [class.out-input]="email == ''" [class.in-input] ="email != '' && email != ' '"
-                        src="../../../assets/icon-user.svg" 
+                        src="../../../assets/icon-user.svg"
                         id="user-icon-default"
                     >
                 </div>
                 <div class="input" style="margin-bottom: 30px;">
                     <input
-                        id="password" 
-                        type="password" 
+                        id="password"
+                        type="password"
                         formControlName="password"
                         [(ngModel)]="password"
                         [@warning]="isPasswordError ? 'yellow' : 'normal'"
                         placeholder="Senha"
                     >
-                    <img 
+                    <img
                         [class.out-input]="password == ''" [class.in-input] ="password != '' && password != ' '"
-                        src="../../../assets/icon-password.svg" 
+                        src="../../../assets/icon-password.svg"
                         id="password-icon-default"
                     >
                 </div>
                 <label *ngIf="isLoggedIn else errorMessage"></label>
-                <button 
-                    type="submit" 
+                <button
+                    type="submit"
                     (click)="login()"
                     [disabled]="!loginForm.valid">
                     Continuar
