@@ -1,27 +1,55 @@
-# Keepalive
+# ![](https://media-exp1.licdn.com/dms/image/D4D1BAQGQ8QujYTIUAQ/company-background_10000/0/1657021490626?e=2147483647&v=beta&t=bckhfmwztaIsJX-uV5h5b7izIeXcVSQpgSBcXFY9Hno)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.6.
+<div align="center">
+  <a href="https://github.com/features/actions" title="Go to GitHub Actions homepage"><img src="https://img.shields.io/badge/CI-GitHub_Actions-blue?logo=github-actions&logoColor=white" alt="Made with GH Actions"></a>
+  <a href="https://www.docker.com/" title="Go to Docker homepage"><img src="https://badges.aleen42.com/src/docker.svg" alt="Made with Docker"></a>
+  <a href="https://angular.io/"><img src="https://badges.aleen42.com/src/angular.svg"></a>
+  <a href="https://jasmine.github.io/"><img src="https://badges.aleen42.com/src/jasmine.svg"></a>
+</div>
 
-## Development server
+# About
+This project was made as a way of learning and finishing my front-end internship with Angular at [`Compass UOL`](https://compass.uol/en/home/), using [Firebase Auth](https://firebase.google.com/docs/auth), [Docker](https://www.docker.com/) and [Storybook](https://storybook.js.org/)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+# Required packages
+- [Node 18.x](https://nodejs.org/en/download/)
+- [Angular 14.x](https://angular.io/guide/setup-local)
 
-## Code scaffolding
+# Usage
+Download the .zip file or clone the repository into your computer, open a terminal and run:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+    npm install
 
-## Build
+to install all the dependencies.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Once it's installed, run:
 
-## Running unit tests
+    npm run start
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+and open [localhost on port 4200](https://localhost:4200).
 
-## Running end-to-end tests
+<hr>
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+To see the unit tests with Jasmine and Karma, run:
 
-## Further help
+    npm run test
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+It will open a Chromium browser with the results. 
+You can change to the browser of your choice in the `karma.conf.js` file.
+
+
+See the documentation [here](http://karma-runner.github.io/0.10/config/browsers.html).
+
+<hr>
+
+And last but not least, you will have to create a folder called `environments` inside the `src` folder.
+
+Inside the new folder, create a file named `environment.ts` and put the Firebase and the API information.
+
+You can check the `environmentExample` file to see the format and [Comments](#a-namecommentsa-comments) section to know how to get those informations.
+
+
+# <a name="comments"></a> Comments
+1. The design is available on [Figma](https://www.figma.com/file/mzmik9rL894EglsraZbN8P/keepalive?node-id=0%3A1)
+2. This project uses the Open Weather Map, so make sure to get your own API key by signing up [here](https://home.openweathermap.org/users/sign_up).
+3. Just like the API, Firebase also needs some information to work. You can follow [this](https://codinglatte.com/posts/how-to/how-to-setup-firebase-for-angular/) tutorial from Coding Latte to setup it.
+4. This project is for educational purposes only, but feel free to use it however you want/need.

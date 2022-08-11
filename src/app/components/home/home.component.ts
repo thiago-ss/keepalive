@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   lon: number = 0;
   weatherData: any;
   actualDateTime: number = Date.now();
-  time: number = 60;
+  time: number = 10;
   countdown: any;
 
   constructor(
@@ -37,6 +37,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.authService.logout();
         this.router.navigate(['/login']);
       } else {
+        time--;
         this.time--;
       }
     }, 1000)
