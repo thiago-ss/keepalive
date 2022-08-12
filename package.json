@@ -9,7 +9,8 @@
     "test": "ng test --code-coverage",
     "docs:json": "compodoc -p ./tsconfig.json -e json -d .",
     "storybook": "npm run docs:json && start-storybook -p 6006",
-    "build-storybook": "npm run docs:json && build-storybook"
+    "build-storybook": "npm run docs:json && build-storybook",
+    "chromatic": "npx chromatic --project-token=90faf3e316e4"
   },
   "private": true,
   "dependencies": {
@@ -47,6 +48,7 @@
     "@storybook/testing-library": "^0.0.13",
     "@types/jasmine": "~4.0.0",
     "babel-loader": "^8.2.5",
+    "chromatic": "^6.7.4",
     "jasmine-core": "~4.1.0",
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",
@@ -55,5 +57,7 @@
     "karma-jasmine-html-reporter": "~1.7.0",
     "puppeteer": "^16.0.0",
     "typescript": "~4.7.2"
-  }
+  },
+  "readme": "ERROR: No README data found!",
+  "_id": "keepalive@0.0.0"
 }

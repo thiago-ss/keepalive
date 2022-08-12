@@ -38,8 +38,6 @@ button {
   box-shadow: inset 5px 5px 15px rgba(0, 0, 0, 0.15);
   border: none;
   border-radius: 50px;
-  margin-top: 105px;
-  margin-bottom: 25px;
   font-weight: bold;
-  font-family: Mark-Pro;
+  /* font-family: Mark-Pro; */
 }

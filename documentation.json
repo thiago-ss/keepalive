@@ -1544,6 +1544,16 @@
                 "name": "environment",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "environmentExample.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\n  production: false,\n  firebaseConfig: {\n    apiKey: \"\",\n    authDomain: \"\",\n    projectId: \"\",\n    storageBucket: \"\",\n    messagingSenderId: \"\",\n    appId: \"\",\n    measurementId: \"\"\n  },\n  apiUrl: 'https://api.openweathermap.org/data/2.5/weather/',\n  APPID: 'your api key here'\n}"
+            },
+            {
+                "name": "environment",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "src/environments/environment.prod.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -1703,6 +1713,18 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "literal type"
+                }
+            ],
+            "environmentExample.ts": [
+                {
+                    "name": "environment",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "environmentExample.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\n  production: false,\n  firebaseConfig: {\n    apiKey: \"\",\n    authDomain: \"\",\n    projectId: \"\",\n    storageBucket: \"\",\n    messagingSenderId: \"\",\n    appId: \"\",\n    measurementId: \"\"\n  },\n  apiUrl: 'https://api.openweathermap.org/data/2.5/weather/',\n  APPID: 'your api key here'\n}"
                 }
             ],
             "src/environments/environment.prod.ts": [
@@ -1889,6 +1911,16 @@
         "count": 3,
         "status": "low",
         "files": [
+            {
+                "filePath": "environmentExample.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "environment",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
             {
                 "filePath": "src/app/app.component.ts",
                 "type": "component",
