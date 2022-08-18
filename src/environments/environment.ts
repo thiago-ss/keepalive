@@ -13,7 +13,7 @@ export const environment = {
     appId: "1:114774932441:web:58c4201c74d76138a0f7c8",
     measurementId: "G-8JEWB4P7SM"
   },
-  apiUrl: 'https://api.openweathermap.org/data/2.5/weather/',
+  apiUrl: 'https://api.openweathermap.org/data/2.5/weather',
   APPID: 'bfa29a247389ee6ae90007c90a10c40b'
 }
 
