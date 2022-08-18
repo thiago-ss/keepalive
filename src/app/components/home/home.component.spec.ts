@@ -28,6 +28,11 @@ describe('HomeComponent', () => {
     component = fixture.componentInstance;
   });
 
+  afterEach(() => {
+    fixture.destroy();
+    jasmine.clock().uninstall();
+  });
+
   it('can load instance', () => {
     expect(component).toBeTruthy();
   });
@@ -44,19 +49,22 @@ describe('HomeComponent', () => {
     expect(component.time).toBe(60);
   });
 
-  describe('refresh', () => {
-    it('should start the timer to refresh the page when its over', async () => {
-      component.refresh(60);
-      expect(component.countdown).toBeTruthy();
-    });
-    expect(component.refresh).toHaveBeenCalled();
-  });
-
   describe('ngOnInit', () => {
     it('should call #getUserLocation', () => {
       spyOn(component, 'getUserLocation').and.callThrough();
       component.ngOnInit();
       expect(component.getUserLocation).toHaveBeenCalled();
+    });
+  });
+
+  describe('refresh', () => {
+    it('should logout user when time is over', () => {
+      let mySpy = spyOn(component, 'logout');
+
+      jasmine.clock().install();
+      component.refresh(component.time);
+      jasmine.clock().tick(61000);
+      expect(mySpy).toHaveBeenCalled();
     });
   });
 
@@ -79,6 +87,12 @@ describe('HomeComponent', () => {
       spyOn(weatherServiceStub, 'getWeatherData').and.callThrough();
       component.getUserLocation();
       expect(weatherServiceStub.getWeatherData).toHaveBeenCalled();
+    });
+  });
+
+  describe('getUserPosition', () => {
+    it('should get user position', () => {
+
     });
   });
 });
