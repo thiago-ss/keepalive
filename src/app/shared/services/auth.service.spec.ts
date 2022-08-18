@@ -1,4 +1,4 @@
-import { TestBed } from '@angular/core/testing';
+import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
@@ -30,16 +30,20 @@ describe('AuthService', () => {
   });
 
   describe('logout method', () => {
-    it('should make the expected calls', () => {
+    it('should make the expected calls', fakeAsync(() => {
       const angularFireAuthStub: AngularFireAuth = TestBed.inject(
         AngularFireAuth
       );
       const routerStub: Router = TestBed.inject(Router);
-      spyOn(angularFireAuthStub, 'signOut').and.callThrough();
+
+      spyOn(angularFireAuthStub, 'signOut').and.callThrough()
+      tick();
+      localStorage.removeItem('token');
       spyOn(routerStub, 'navigate').and.callThrough();
+
       service.logout();
+
       expect(angularFireAuthStub.signOut).toHaveBeenCalled();
-      expect(routerStub.navigate).toHaveBeenCalled();
-    });
+    }));
   });
 });
