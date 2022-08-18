@@ -66,64 +66,64 @@
             }
         }
         .login-form {
-            @include responsive(mobileS) {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-            @include responsive(mobileL) {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-            @include responsive(tablet) {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-            .input {
-                display: flex;
-                position: relative;
-                @include responsive(mobileS) {
-                    width: 260px;
-                }
-                input {
-                    display: flex;
-                    flex-direction: column;
-                    width: 380px;
-                    height: 60px;
-                    border-radius: 50px;
-                    background-color: #26292C;
-                    border: 1px solid $white;
-                    padding: 20px;
-                    color: $text-color;
-                    &::placeholder {
-                        color: $text-color;
-                    }
-                    &:active {
-                        outline: none;
-                    }
-                    @include responsive(mobileS) {
-                        width: 290px;
-                    }
-                    @include responsive(mobileL) {
-                        width: 320px;
-                    }
-                }
-                img {
-                    position: absolute;
-                    right: -40px;
-                    top: 30%;
-                    @include responsive(mobileS) {
-                        right: 10px;
-                        width: 20px;
-                    }
-                    @include responsive(mobileL) {
-                        right: 20px;
-                        width: 20px;
-                    }
-                }
-            }
+          @include responsive(mobileS) {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+          }
+          @include responsive(mobileL) {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+          }
+          @include responsive(tablet) {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+          }
+          .input {
+              display: flex;
+              position: relative;
+              @include responsive(mobileS) {
+                  width: 260px;
+              }
+              input {
+                  display: flex;
+                  flex-direction: column;
+                  width: 380px;
+                  height: 60px;
+                  border-radius: 50px;
+                  background-color: #26292C;
+                  border: 1px solid $white;
+                  padding: 20px;
+                  color: $text-color;
+                  &::placeholder {
+                      color: $text-color;
+                  }
+                  &:active {
+                      outline: none;
+                  }
+                  @include responsive(mobileS) {
+                      width: 290px;
+                  }
+                  @include responsive(mobileL) {
+                      width: 320px;
+                  }
+              }
+              img {
+                  position: absolute;
+                  right: -40px;
+                  top: 30%;
+                  @include responsive(mobileS) {
+                      right: 10px;
+                      width: 20px;
+                  }
+                  @include responsive(mobileL) {
+                      right: 20px;
+                      width: 20px;
+                  }
+              }
+          }
             h2 {
                 @include responsive(mobileS) {
                     margin-top: 50px;

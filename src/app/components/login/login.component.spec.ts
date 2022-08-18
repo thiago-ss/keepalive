@@ -25,6 +25,10 @@ describe('LoginComponent', () => {
     component = fixture.componentInstance;
   });
 
+  afterEach(() => {
+    fixture.destroy();
+  });
+
   it('should load the component instance', () => {
     expect(component).toBeTruthy();
   });
@@ -45,6 +49,38 @@ describe('LoginComponent', () => {
     expect(component.isLoggedIn).toBe(true);
   });
 
+  describe('errorHandler method', () => {
+    it('should set isEmailError and isPasswordError to false', () => {
+      const form = component.loginForm;
+      form.setValue({
+        "email": "thiago2508ss@gmail.com",
+        "password": "Senha123"
+      })
+      component.errorHandler();
+      expect(component.isEmailError).toBe(false)
+    });
+
+    it('should set isEmailError to true', () => {
+      const form = component.loginForm;
+      form.setValue({
+        "email": "",
+        "password": "Senha123"
+      })
+      component.errorHandler();
+      expect(component.isEmailError).toBe(true)
+    });
+
+    it('should set isPasswordError to true', () => {
+      const form = component.loginForm;
+      form.setValue({
+        "email": "thiago2508ss@gmail.com",
+        "password": ""
+      })
+      component.errorHandler();
+      expect(component.isPasswordError).toBe(true)
+    });
+  });
+
   describe('login method', () => {
     it('should make the expected calls', () => {
       const authServiceStub: AuthService = fixture.debugElement.injector.get(
@@ -53,6 +89,16 @@ describe('LoginComponent', () => {
       spyOn(authServiceStub, 'login').and.callThrough();
       component.login();
       expect(authServiceStub.login).toHaveBeenCalled();
+    });
+
+    it('should set isEmailError and isPasswordError to false', () => {
+      const form = component.loginForm;
+      form.setValue({
+        "email": "thiago2508ss@gmail.com",
+        "password": "Senha123"
+      })
+      component.login();
+      expect(component.isEmailError).toBe(false)
     });
   });
 });
