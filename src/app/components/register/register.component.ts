@@ -22,7 +22,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
     ])
   ]
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
 
   email: string = '';
   password: string = '';
@@ -56,9 +56,6 @@ export class RegisterComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit(): void {
-  }
-
   errorHandler() {
     if(this.registerForm.controls['email'].errors) {
       this.isEmailError = true;
@@ -81,10 +78,10 @@ export class RegisterComponent implements OnInit {
 
   validate() {
     this.validEmail = this.registerForm.controls['email'].errors?.['pattern'] && this.registerForm.controls['email'].errors?.['required'];
-    this.validPassword = this.registerForm.controls['password'].errors?.['pattern'] && 
+    this.validPassword = this.registerForm.controls['password'].errors?.['pattern'] &&
       this.registerForm.controls['password'].errors?.['required'] &&
       this.registerForm.controls['confirmPassword'] == this.registerForm.controls['password']
-    
+
     if(this.validEmail == true && this.validPassword == true) {
       this.router.navigate(['/login']);
     }
@@ -115,7 +112,7 @@ export class RegisterComponent implements OnInit {
       this.isError = true;
     } else {
       this.authService.register(this.email, this.password);
-    
+
       this.email = '';
       this.password = '';
     }
