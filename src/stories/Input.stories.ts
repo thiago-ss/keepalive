@@ -1,9 +1,9 @@
 import { Story, Meta } from '@storybook/angular/types-6-0';
-import { ButtonComponent } from './button.component';
+import { InputComponent } from './input.component';
 
 export default {
-  title: 'Button',
-  component: ButtonComponent,
+  title: 'Input',
+  component: InputComponent,
   argTypes: {
     value: {
       control: 'text'

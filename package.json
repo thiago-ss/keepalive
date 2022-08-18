@@ -27,6 +27,7 @@
     "@angular/router": "^14.0.0",
     "@ngrx/store": "^14.0.2",
     "firebase": "^9.9.1",
+    "karma-coverage-istanbul-reporter": "^3.0.3",
     "rxjs": "~7.5.0",
     "storybook": "^6.5.10",
     "tslib": "^2.3.0",
@@ -55,7 +56,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
-    "puppeteer": "^16.0.0",
+    "puppeteer": "^16.1.0",
     "typescript": "~4.7.2"
   },
   "readme": "ERROR: No README data found!",

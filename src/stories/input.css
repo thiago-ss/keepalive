@@ -1,0 +1,16 @@
+input {
+  width: 337px;
+  border-radius: 50px;
+  background-color: #26292C;
+  border: 1px solid #FFF;
+  padding: 20px;
+  color: #E0E0E0;
+  font-family: Mark-Pro;
+}
+
+input::placeholder {
+  color: #E0E0E0;
+}
+input:active {
+  outline: none;
+}
