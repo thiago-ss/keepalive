@@ -15,6 +15,10 @@ describe('AppComponent', () => {
     component = fixture.componentInstance;
   });
 
+  afterEach(() => {
+    fixture.destroy();
+  });
+
   it('should load the component instance', () => {
     expect(component).toBeTruthy();
   });
