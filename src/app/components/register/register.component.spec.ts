@@ -118,16 +118,16 @@ describe('RegisterComponent', () => {
   });
 
   describe('validate', () => {
-    // it('should confirm password', () => {
-    //   const form = component.registerForm;
-    //   form.setValue({
-    //     "email": "teste@testee.com",
-    //     "password": "Teste123!",
-    //     "confirmPassword": "Teste123!"
-    //   });
-    //   component.validate();
-    //   expect(component.password).toEqual(component.confirmPassword);
-    // });
+    it('should confirm password', () => {
+      const form = component.registerForm;
+      form.setValue({
+        "email": "teste@testee.com",
+        "password": "Teste123!",
+        "confirmPassword": "Teste123!"
+      });
+      component.validate();
+      expect(component.password).toEqual(component.confirmPassword);
+    });
 
     it('should validate email', () => {
       const form = component.registerForm;
@@ -193,14 +193,15 @@ describe('RegisterComponent', () => {
     });
   });
 
-  describe('register method', () => {
+  describe('register', () => {
     it('should make the expected calls', () => {
       const authServiceStub: AuthService = fixture.debugElement.injector.get(
         AuthService
       );
-      spyOn(authServiceStub, 'register').and.callThrough();
+      component.isError = false;
+      let registerSpy = spyOn(authServiceStub, 'register')
       component.register();
-      expect(authServiceStub.register).toHaveBeenCalledTimes(1);
+      expect(registerSpy).toHaveBeenCalled();
     });
   });
 });

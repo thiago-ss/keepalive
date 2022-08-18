@@ -79,12 +79,8 @@ export class RegisterComponent {
   validate() {
     this.validEmail = this.registerForm.controls['email'].errors?.['pattern'] && this.registerForm.controls['email'].errors?.['required'];
     this.validPassword = this.registerForm.controls['password'].errors?.['pattern'] &&
-      this.registerForm.controls['password'].errors?.['required'] &&
-      this.registerForm.controls['confirmPassword'] == this.registerForm.controls['password']
-
-    if(this.validEmail == true && this.validPassword == true) {
-      this.router.navigate(['/login']);
-    }
+    this.registerForm.controls['password'].errors?.['required'] &&
+    this.registerForm.controls['confirmPassword'] == this.registerForm.controls['password']
   }
 
   haveLowercase(param: string) {
@@ -110,12 +106,13 @@ export class RegisterComponent {
   register() {
     if(!this.registerForm.valid && !this.registerForm.dirty) {
       this.isError = true;
-    } else {
-      this.authService.register(this.email, this.password);
-
-      this.email = '';
-      this.password = '';
     }
+
+    this.authService.register(this.email, this.password);
+
+    this.email = '';
+    this.password = '';
+
   }
 
   get Email() {
