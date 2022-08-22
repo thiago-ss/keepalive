@@ -155,7 +155,7 @@
         },
         {
             "name": "WeatherService",
-            "id": "injectable-WeatherService-de652cc25fb5ed42ae6a1d225541fa027a21a9d11c274223d14a9613ca9a3e7908c709e4d422e4c960517b4442bfbe18101af5f7ce8f1c819c945c6b49836b1c",
+            "id": "injectable-WeatherService-7f98093f3f1a573f779acd58ee56169aece3d105e36d969b7a4893d74f9c52949bbbc0adf93af7e633b1222d3a8b274e5c98c570c83d1d5ee524e58d900d7e03",
             "file": "src/app/shared/services/weather.service.ts",
             "properties": [],
             "methods": [
@@ -207,7 +207,7 @@
             "deprecationMessage": "",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import { Injectable } from '@angular/core';\nimport { HttpClient, HttpParams } from '@angular/common/http'\nimport { environment } from 'src/environments/environment';\nimport { Observable } from 'rxjs';\n\n@Injectable({\n  providedIn: 'any'\n})\nexport class WeatherService {\n\n  constructor(private httpClient: HttpClient) {}\n\n  getWeatherData(lat: number, lon: number): Observable<any> {\n    let params = new HttpParams()\n    .set('lat', lat)\n    .set('lon', lon)\n    .set('units', 'metric')\n    .set('appid', environment.APPID)\n\n    return this.httpClient.get(environment.apiUrl, { params });\n  }\n}\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\nimport { HttpClient, HttpParams } from '@angular/common/http'\nimport { environment } from 'src/environments/environment';\nimport { Observable } from 'rxjs';\n\n@Injectable({\n  providedIn: 'any'\n})\nexport class WeatherService {\n\n  constructor(private httpClient: HttpClient) {}\n\n  getWeatherData(lat: number, lon: number): Observable<any> {\n    return this.httpClient.get(`${environment.apiUrl}?lat=${lat}&lon=${lon}&lang=$pt_br&units=metric&APPID=${environment.APPID}`);\n  }\n}\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -868,7 +868,7 @@
         },
         {
             "name": "RegisterComponent",
-            "id": "component-RegisterComponent-6f2d54c8969df78a7df11978416ac5df1c3db68259bf6fc7b4f7cf5d2951adf6f0fd12308091090005508927614959d41e2eaac5b7d857f70f32b21c063fe239",
+            "id": "component-RegisterComponent-c8fe4d5a4b0a365b7492af107b06c0819f348ff518a965b1ef56b76934c2d2df3f8faec70eaafffaf2291fdca327249e9d89ee6f5b585bfa307301fde24047fe",
             "file": "src/app/components/register/register.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1010,7 +1010,7 @@
                     "optional": false,
                     "returnType": "any",
                     "typeParameters": [],
-                    "line": 90,
+                    "line": 86,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -1038,7 +1038,7 @@
                     "optional": false,
                     "returnType": "any",
                     "typeParameters": [],
-                    "line": 100,
+                    "line": 96,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -1066,7 +1066,7 @@
                     "optional": false,
                     "returnType": "any",
                     "typeParameters": [],
-                    "line": 105,
+                    "line": 101,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -1094,7 +1094,7 @@
                     "optional": false,
                     "returnType": "any",
                     "typeParameters": [],
-                    "line": 95,
+                    "line": 91,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -1115,7 +1115,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 110,
+                    "line": 106,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -1137,7 +1137,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { FormControl, FormGroup, Validators } from '@angular/forms';\nimport { Router } from '@angular/router';\nimport { AuthService } from 'src/app/shared/services/auth.service';\nimport { animate, state, style, transition, trigger } from '@angular/animations';\n\n@Component({\n  selector: 'app-register',\n  templateUrl: './register.component.html',\n  styleUrls: ['./register.component.scss'],\n  animations: [\n    trigger('warning', [\n      state('normal', style({\n        borderColor: '#FFF'\n      })),\n      state('yellow', style({\n        borderColor: '#E9B425'\n      })),\n      transition('normal <=> yellow', [\n        animate('0.5s')\n      ])\n    ])\n  ]\n})\nexport class RegisterComponent {\n\n  email: string = '';\n  password: string = '';\n  confirmPassword: string = '';\n\n  isError: boolean = false;\n  isEmailError: boolean = false;\n  isPasswordError: boolean = false;\n  isConfirmPasswordError: boolean = false;\n\n  validEmail: any;\n  validPassword: any;\n\n  registerForm = new FormGroup({\n    email: new FormControl('', [\n      Validators.required,\n      Validators.pattern(\"^[a-z0-9._%+-]+@[a-z0-9.-]+\\\\.[a-z]{2,4}$\")\n    ]),\n    password: new FormControl('', [\n      Validators.required,\n      Validators.pattern(\"^(?=.*[A-Z])(?=.*[!#@$%&])(?=.*[0-9])(?=.*[a-z]).{6,15}$\")\n    ]),\n    confirmPassword: new FormControl('', [\n      Validators.required,\n      Validators.pattern(\"^(?=.*[A-Z])(?=.*[!#@$%&])(?=.*[0-9])(?=.*[a-z]).{6,15}$\")\n    ])\n  })\n\n  constructor(\n    private authService: AuthService,\n    private router: Router\n  ) {}\n\n  errorHandler() {\n    if(this.registerForm.controls['email'].errors) {\n      this.isEmailError = true;\n    } else {\n      this.isEmailError = false;\n    }\n\n    if(this.registerForm.controls['password'].errors) {\n      this.isPasswordError = true;\n    } else {\n      this.isPasswordError = false;\n    }\n\n    if(this.registerForm.controls['confirmPassword'].errors) {\n      this.isConfirmPasswordError = true;\n    } else {\n      this.isConfirmPasswordError = false;\n    }\n  }\n\n  validate() {\n    this.validEmail = this.registerForm.controls['email'].errors?.['pattern'] && this.registerForm.controls['email'].errors?.['required'];\n    this.validPassword = this.registerForm.controls['password'].errors?.['pattern'] &&\n      this.registerForm.controls['password'].errors?.['required'] &&\n      this.registerForm.controls['confirmPassword'] == this.registerForm.controls['password']\n\n    if(this.validEmail == true && this.validPassword == true) {\n      this.router.navigate(['/login']);\n    }\n  }\n\n  haveLowercase(param: string) {\n    let regEx = /[a-z]/;\n    return regEx.test(param);\n  }\n\n  haveUppercase(param: string) {\n    let regEx = /[A-Z]/;\n    return regEx.test(param);\n  }\n\n  haveNumber(param: string) {\n    let regEx = /[0-9]/;\n    return regEx.test(param);\n  }\n\n  haveSymbols(param: string) {\n    let regEx = /[$&+,:;=?@#|'<>.^*()%!-]/;\n    return regEx.test(param);\n  }\n\n  register() {\n    if(!this.registerForm.valid && !this.registerForm.dirty) {\n      this.isError = true;\n    } else {\n      this.authService.register(this.email, this.password);\n\n      this.email = '';\n      this.password = '';\n    }\n  }\n\n  get Email() {\n    return this.registerForm.get('email')\n  }\n\n  get Password() {\n    return this.registerForm.get('password')\n  }\n\n  get ConfirmPassword() {\n    return this.registerForm.get('confirmPassword')\n  }\n\n}\n",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { FormControl, FormGroup, Validators } from '@angular/forms';\nimport { Router } from '@angular/router';\nimport { AuthService } from 'src/app/shared/services/auth.service';\nimport { animate, state, style, transition, trigger } from '@angular/animations';\n\n@Component({\n  selector: 'app-register',\n  templateUrl: './register.component.html',\n  styleUrls: ['./register.component.scss'],\n  animations: [\n    trigger('warning', [\n      state('normal', style({\n        borderColor: '#FFF'\n      })),\n      state('yellow', style({\n        borderColor: '#E9B425'\n      })),\n      transition('normal <=> yellow', [\n        animate('0.5s')\n      ])\n    ])\n  ]\n})\nexport class RegisterComponent {\n\n  email: string = '';\n  password: string = '';\n  confirmPassword: string = '';\n\n  isError: boolean = false;\n  isEmailError: boolean = false;\n  isPasswordError: boolean = false;\n  isConfirmPasswordError: boolean = false;\n\n  validEmail: any;\n  validPassword: any;\n\n  registerForm = new FormGroup({\n    email: new FormControl('', [\n      Validators.required,\n      Validators.pattern(\"^[a-z0-9._%+-]+@[a-z0-9.-]+\\\\.[a-z]{2,4}$\")\n    ]),\n    password: new FormControl('', [\n      Validators.required,\n      Validators.pattern(\"^(?=.*[A-Z])(?=.*[!#@$%&])(?=.*[0-9])(?=.*[a-z]).{6,15}$\")\n    ]),\n    confirmPassword: new FormControl('', [\n      Validators.required,\n      Validators.pattern(\"^(?=.*[A-Z])(?=.*[!#@$%&])(?=.*[0-9])(?=.*[a-z]).{6,15}$\")\n    ])\n  })\n\n  constructor(\n    private authService: AuthService,\n    private router: Router\n  ) {}\n\n  errorHandler() {\n    if(this.registerForm.controls['email'].errors) {\n      this.isEmailError = true;\n    } else {\n      this.isEmailError = false;\n    }\n\n    if(this.registerForm.controls['password'].errors) {\n      this.isPasswordError = true;\n    } else {\n      this.isPasswordError = false;\n    }\n\n    if(this.registerForm.controls['confirmPassword'].errors) {\n      this.isConfirmPasswordError = true;\n    } else {\n      this.isConfirmPasswordError = false;\n    }\n  }\n\n  validate() {\n    this.validEmail = this.registerForm.controls['email'].errors?.['pattern'] && this.registerForm.controls['email'].errors?.['required'];\n    this.validPassword = this.registerForm.controls['password'].errors?.['pattern'] &&\n    this.registerForm.controls['password'].errors?.['required'] &&\n    this.registerForm.controls['confirmPassword'] == this.registerForm.controls['password']\n  }\n\n  haveLowercase(param: string) {\n    let regEx = /[a-z]/;\n    return regEx.test(param);\n  }\n\n  haveUppercase(param: string) {\n    let regEx = /[A-Z]/;\n    return regEx.test(param);\n  }\n\n  haveNumber(param: string) {\n    let regEx = /[0-9]/;\n    return regEx.test(param);\n  }\n\n  haveSymbols(param: string) {\n    let regEx = /[$&+,:;=?@#|'<>.^*()%!-]/;\n    return regEx.test(param);\n  }\n\n  register() {\n    if(!this.registerForm.valid && !this.registerForm.dirty) {\n      this.isError = true;\n    }\n\n    this.authService.register(this.email, this.password);\n\n    this.email = '';\n    this.password = '';\n\n  }\n\n  get Email() {\n    return this.registerForm.get('email')\n  }\n\n  get Password() {\n    return this.registerForm.get('password')\n  }\n\n  get ConfirmPassword() {\n    return this.registerForm.get('confirmPassword')\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -1194,7 +1194,7 @@
                         "name": "Email",
                         "type": "",
                         "returnType": "",
-                        "line": 121
+                        "line": 118
                     }
                 },
                 "Password": {
@@ -1203,7 +1203,7 @@
                         "name": "Password",
                         "type": "",
                         "returnType": "",
-                        "line": 125
+                        "line": 122
                     }
                 },
                 "ConfirmPassword": {
@@ -1212,15 +1212,15 @@
                         "name": "ConfirmPassword",
                         "type": "",
                         "returnType": "",
-                        "line": 129
+                        "line": 126
                     }
                 }
             },
             "templateData": "<div class=\"containerr\">\n    <div class=\"login-container\">\n        <div class=\"login-info mark-font\">\n            <h1>Olá,</h1>\n            <p>Para continuar navegando de forma <br> segura, efetue o cadastro na rede.</p>\n        </div>\n        <div class=\"login-form mark-font\">\n            <h2>Registrar</h2>\n            <form\n                class=\"login-form\"\n                [formGroup]=\"registerForm\"\n                (change)=\"errorHandler()\"\n                (ngSubmit)=\"validate()\">\n                <div style=\"margin-bottom: 30px;\">\n                    <div class=\"input\">\n                        <input\n                            id=\"email\"\n                            type=\"email\" \n                            formControlName=\"email\"\n                            [@warning]=\"isEmailError ? 'yellow' : 'normal'\"\n                            [(ngModel)]=\"email\"\n                            placeholder=\"Usuário\"\n                        >\n                        <img \n                            [class.out-input]=\"email == ''\" [class.in-input] =\"email != '' && email != ' '\"\n                            src=\"../../../assets/icon-user.svg\" \n                            id=\"user-icon-default\"\n                        >\n                    </div>\n                    <div *ngIf=\"(Email?.invalid && Email?.touched) || Email?.dirty\" class=\"errorContainer\">\n                        <small \n                            *ngIf=\"registerForm.controls['email'].errors?.['required']\"\n                            class=\"error\" \n                        >\n                            Insira um email\n                        </small>\n                        <small \n                            *ngIf=\"registerForm.controls['email'].errors?.['pattern']\"\n                            class=\"error\"\n                        >\n                            Insira um email valido\n                        </small>\n                    </div>\n                </div>\n                <div style=\"margin-bottom: 30px;\">\n                    <div class=\"input\">\n                        <input\n                            id=\"password\" \n                            type=\"password\" \n                            formControlName=\"password\"\n                            [(ngModel)]=\"password\"\n                            [@warning]=\"isPasswordError ? 'yellow' : 'normal'\"\n                            placeholder=\"Senha\"\n                        >\n                        <img \n                            [class.out-input]=\"password == ''\" [class.in-input] =\"password != '' && password != ' '\"\n                            src=\"../../../assets/icon-password.svg\" \n                            id=\"password-icon-default\" \n                        >\n                    </div>\n                    <div *ngIf=\"(Password?.invalid && Password?.touched) || Password?.dirty\" class=\"passwordErrorContainer\">\n                        <small \n                            *ngIf=\"registerForm.controls['password'].errors?.['required']\" \n                            class=\"error\"\n                        >\n                            Insira uma senha\n                        </small>\n                        <small \n                            *ngIf=\"registerForm.controls['password'].errors?.['pattern']\"\n                            class=\"error\"\n                            id=\"passwordError\"\n                        >\n                            Sua senha deve conter: \n                            <ul>\n                                <li \n                                    class=\"error\"\n                                    [class.checked]=\"password.length >= 6\">\n                                    6 caracteres\n                                </li>\n                                <li \n                                    class=\"error\" \n                                    [class.checked]=\"haveUppercase(password)\">\n                                    Uma letra maiuscula\n                                </li>\n                                <li \n                                    class=\"error\"\n                                    [class.checked]=\"haveLowercase(password)\">\n                                    Uma letra minuscula\n                                </li>\n                                <li \n                                    class=\"error\"\n                                    [class.checked]=\"haveNumber(password)\">\n                                    Um numero\n                                </li>\n                                <li \n                                    class=\"error\"\n                                    [class.checked]=\"haveSymbols(password)\">\n                                    Um caracter especial\n                                </li>\n                            </ul>\n                        </small>\n                    </div>\n                </div>\n                <div style=\"margin-bottom: 30px;\">\n                    <div class=\"input\">\n                        <input\n                            id=\"confirmPassword\" \n                            type=\"password\" \n                            formControlName=\"confirmPassword\"\n                            [(ngModel)]=\"confirmPassword\"\n                            [@warning]=\"isConfirmPasswordError ? 'yellow' : 'normal'\"\n                            placeholder=\"Confirme sua senha\"\n                        >\n                        <img \n                            [class.out-input]=\"password == ''\" [class.in-input] =\"password != '' && password != ' '\"\n                            src=\"../../../assets/icon-password.svg\" \n                            id=\"password-icon-default\" \n                        >\n                    </div>\n                    <div *ngIf=\"(ConfirmPassword?.invalid && ConfirmPassword?.touched) || ConfirmPassword?.dirty\" class=\"errorContainer\">\n                        <small \n                            *ngIf=\"registerForm.controls['confirmPassword'].errors?.['required']\" \n                            class=\"error\"\n                        >\n                            Confirme sua senha <br>\n                        </small>\n                        <small \n                            *ngIf=\"!(registerForm.controls['confirmPassword'].value == registerForm.controls['password'].value)\"\n                            class=\"error\"\n                        >\n                            As senhas devem ser iguais\n                        </small>\n                    </div>\n                </div>\n                <button \n                    type=\"submit\" \n                    (click)=\"register()\"\n                    [disabled]=\"!registerForm.valid\">\n                    Continuar\n                </button>\n            </form>\n            <a id=\"link\" href=\"/login\">Ja possui uma conta? Faca login</a>\n        </div>\n    </div>\n    <div class=\"logo-container\">\n        <img src=\"../../../assets/compass02.png\" id=\"logo\" alt=\"Logo\">\n        <img src=\"../../../assets/compass01.png\" id=\"bg\" alt=\"Notebook\">\n    </div>\n</div>"
         },
         {
-            "name": "TitleComponent",
-            "id": "component-TitleComponent-e53310e6dc0e0ecab1befdd383097ca189c32a71f4ca8765e1941fa1b33eac56d086cbfc6954f618f7aced24b5100a9c699ccf25e124ce3be6ce102f3c2eaed3",
+            "name": "SubtitleComponent",
+            "id": "component-SubtitleComponent-f2962e49110e253512fb129983fe7a47eb25b40884d34aa30516307596e833d21241af94c905fe171d9fa59996e053d64fa89fa4f5947b6fb57724feeb47ddd3",
             "file": "src/stories/subtitle.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1229,16 +1229,16 @@
             "providers": [],
             "selector": "app-subtitle",
             "styleUrls": [
-                "./title.css"
+                "./subtitle.css"
             ],
             "styles": [],
-            "template": "<p>{{ text }}</p>\n",
+            "template": "<p>{{ text1 }} <br> {{ text2 }}</p>\n",
             "templateUrl": [],
             "viewProviders": [],
             "inputsClass": [
                 {
-                    "name": "text",
-                    "defaultValue": "'Para continuar navegando de forma <br> segura, efetue o login na rede.'",
+                    "name": "text1",
+                    "defaultValue": "'Para continuar navegando de forma '",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "line": 12,
@@ -1247,7 +1247,18 @@
                 }
             ],
             "outputsClass": [],
-            "propertiesClass": [],
+            "propertiesClass": [
+                {
+                    "name": "text2",
+                    "defaultValue": "'segura, efetue o login na rede.'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "any",
+                    "optional": false,
+                    "description": "",
+                    "line": 13
+                }
+            ],
             "methodsClass": [],
             "deprecated": false,
             "deprecationMessage": "",
@@ -1256,19 +1267,19 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input } from '@angular/core';\n\n@Component({\n  selector: 'app-subtitle',\n  template: `\n    <p>{{ text }}</p>\n  `,\n  styleUrls: ['./title.css'],\n})\nexport class TitleComponent {\n  @Input()\n  text: any = 'Para continuar navegando de forma <br> segura, efetue o login na rede.'\n}\n",
+            "sourceCode": "import { Component, Input } from '@angular/core';\n\n@Component({\n  selector: 'app-subtitle',\n  template: `\n    <p>{{ text1 }} <br> {{ text2 }}</p>\n  `,\n  styleUrls: ['./subtitle.css'],\n})\nexport class SubtitleComponent {\n  @Input()\n  text1: any = 'Para continuar navegando de forma '\n  text2: any = 'segura, efetue o login na rede.'\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "h1 {\n  font-size: 60px;\n  font-family: Mark-Pro;\n  color: #E0E0E0;\n}\n",
-                    "styleUrl": "./title.css"
+                    "data": "p {\n  font-size: 16px;\n  color: #E0E0E0;\n  font-family: Mark-Pro;\n}\n",
+                    "styleUrl": "./subtitle.css"
                 }
             ],
             "stylesData": ""
         },
         {
             "name": "TitleComponent",
-            "id": "component-TitleComponent-5510c89fbe9780ad39ca9fd3e19996b99eaa806907cdf5193cfdb25ff20dd2db6ab7660247da61cb4633500e891e2f68f41026be4b247f3fa31e3d4189eca686-1",
+            "id": "component-TitleComponent-5510c89fbe9780ad39ca9fd3e19996b99eaa806907cdf5193cfdb25ff20dd2db6ab7660247da61cb4633500e891e2f68f41026be4b247f3fa31e3d4189eca686",
             "file": "src/stories/title.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1312,10 +1323,7 @@
                     "styleUrl": "./title.css"
                 }
             ],
-            "stylesData": "",
-            "isDuplicate": true,
-            "duplicateId": 1,
-            "duplicateName": "TitleComponent-1"
+            "stylesData": ""
         }
     ],
     "modules": [
@@ -1456,6 +1464,16 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "src/stories/Subtitle.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "template.bind({})"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "src/stories/Title.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -1490,7 +1508,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "object",
-                "defaultValue": "{\n  production: false,\n  firebaseConfig: {\n    apiKey: \"AIzaSyDzKKnmpOVOVj7ZNqNXVm5JqoMZ44KkHkM\",\n    authDomain: \"compass-01.firebaseapp.com\",\n    projectId: \"compass-01\",\n    storageBucket: \"compass-01.appspot.com\",\n    messagingSenderId: \"114774932441\",\n    appId: \"1:114774932441:web:58c4201c74d76138a0f7c8\",\n    measurementId: \"G-8JEWB4P7SM\"\n  },\n  apiUrl: 'https://api.openweathermap.org/data/2.5/weather/',\n  APPID: 'bfa29a247389ee6ae90007c90a10c40b'\n}"
+                "defaultValue": "{\n  production: false,\n  firebaseConfig: {\n    apiKey: \"AIzaSyDzKKnmpOVOVj7ZNqNXVm5JqoMZ44KkHkM\",\n    authDomain: \"compass-01.firebaseapp.com\",\n    projectId: \"compass-01\",\n    storageBucket: \"compass-01.appspot.com\",\n    messagingSenderId: \"114774932441\",\n    appId: \"1:114774932441:web:58c4201c74d76138a0f7c8\",\n    measurementId: \"G-8JEWB4P7SM\"\n  },\n  apiUrl: 'https://api.openweathermap.org/data/2.5/weather',\n  APPID: 'bfa29a247389ee6ae90007c90a10c40b'\n}"
             },
             {
                 "name": "require",
@@ -1516,6 +1534,16 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "src/stories/Input.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "args =>({\n  props:{\n    ...args\n  }\n})"
+            },
+            {
+                "name": "template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Subtitle.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
@@ -1601,6 +1629,28 @@
                     "defaultValue": "args =>({\n  props:{\n    ...args\n  }\n})"
                 }
             ],
+            "src/stories/Subtitle.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Subtitle.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "template.bind({})"
+                },
+                {
+                    "name": "template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Subtitle.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "args =>({\n  props:{\n    ...args\n  }\n})"
+                }
+            ],
             "src/stories/Title.stories.ts": [
                 {
                     "name": "Default",
@@ -1656,7 +1706,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "object",
-                    "defaultValue": "{\n  production: false,\n  firebaseConfig: {\n    apiKey: \"AIzaSyDzKKnmpOVOVj7ZNqNXVm5JqoMZ44KkHkM\",\n    authDomain: \"compass-01.firebaseapp.com\",\n    projectId: \"compass-01\",\n    storageBucket: \"compass-01.appspot.com\",\n    messagingSenderId: \"114774932441\",\n    appId: \"1:114774932441:web:58c4201c74d76138a0f7c8\",\n    measurementId: \"G-8JEWB4P7SM\"\n  },\n  apiUrl: 'https://api.openweathermap.org/data/2.5/weather/',\n  APPID: 'bfa29a247389ee6ae90007c90a10c40b'\n}"
+                    "defaultValue": "{\n  production: false,\n  firebaseConfig: {\n    apiKey: \"AIzaSyDzKKnmpOVOVj7ZNqNXVm5JqoMZ44KkHkM\",\n    authDomain: \"compass-01.firebaseapp.com\",\n    projectId: \"compass-01\",\n    storageBucket: \"compass-01.appspot.com\",\n    messagingSenderId: \"114774932441\",\n    appId: \"1:114774932441:web:58c4201c74d76138a0f7c8\",\n    measurementId: \"G-8JEWB4P7SM\"\n  },\n  apiUrl: 'https://api.openweathermap.org/data/2.5/weather',\n  APPID: 'bfa29a247389ee6ae90007c90a10c40b'\n}"
                 }
             ]
         },
@@ -1837,6 +1887,26 @@
                 "status": "low"
             },
             {
+                "filePath": "src/stories/Subtitle.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Subtitle.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "src/stories/Title.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
@@ -1878,9 +1948,9 @@
                 "filePath": "src/stories/subtitle.component.ts",
                 "type": "component",
                 "linktype": "component",
-                "name": "TitleComponent",
+                "name": "SubtitleComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/2",
+                "coverageCount": "0/3",
                 "status": "low"
             },
             {
