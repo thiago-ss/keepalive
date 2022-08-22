@@ -53,4 +53,5 @@ Check the `environmentExample` file to see the format.
 
 # <a name="comments"></a> Comments
 1. The design is available on [Figma](https://www.figma.com/file/mzmik9rL894EglsraZbN8P/keepalive?node-id=0%3A1)
-2. This project is for educational purposes only, but feel free to use it however you want/need.
+2. You can see the [Storybook](https://630380641f3d67923cccbdc3-qmixkuqkmk.chromatic.com/?path=/story/example-introduction--page) here.
+3. This project is for educational purposes only, but feel free to use it however you want/need.
